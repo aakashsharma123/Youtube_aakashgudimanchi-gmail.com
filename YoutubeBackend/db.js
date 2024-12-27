@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
+import dotenv from 'dotenv'
+dotenv.config();
+const password = process.env.mongos_password;
 
-mongoose.connect ("mongodb+srv://aakashgudimanchi:aakash2002@aakash.ovn2x.mongodb.net/youtube")
+mongoose.connect (`mongodb+srv://aakashgudimanchi:${password}@aakash.ovn2x.mongodb.net/youtube`)
 
 const db = mongoose.connection;
 

@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Body from './Components/Body.jsx'
 import EachVideo from './Components/EachVideo.jsx'
 import SuggestedVideos from './Components/SuggestedVideos.jsx'
+import SideBar from './Components/SideBar.jsx'
+import Signin from './Components/Signin.jsx'
 
 const router = createBrowserRouter ([
   {
@@ -16,12 +18,13 @@ const router = createBrowserRouter ([
         index : true,
         element : <Body/>
       },
-      
+
       {
         path : '/video/:id',
     
         element : [
-          <div className='flex'>
+          <div className='flex '>
+            <SideBar />
             <EachVideo/>
             <SuggestedVideos/>
           </div>
@@ -29,8 +32,14 @@ const router = createBrowserRouter ([
     
       }
     ]
+  },
+
+  {
+    path : '/signin',
+    element : <Signin/>
   }
 
+ 
   
 ])
 

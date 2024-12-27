@@ -1,17 +1,14 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import NavBar from './Components/NavBar.jsx';
-import Body from './Components/Body.jsx';
-import EachVideo from './Components/EachVideo.jsx';
-import SuggestedVideos from './Components/SuggestedVideos.jsx';
+import SideBar from './Components/SideBar.jsx';
 
 function App() {
 
   return (
 
      <>
-
-            <NavBar />    
+            <NavBar /> 
      </>
   );
 }

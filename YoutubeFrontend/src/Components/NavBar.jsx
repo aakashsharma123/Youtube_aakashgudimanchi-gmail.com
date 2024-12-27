@@ -21,8 +21,8 @@ const NavBar = () => {
 
                         <div className="left-part flex items-center  space-x-3 ">
                               <GiHamburgerMenu className='text-xl' />
-                              <img onClick={() => setToggleButton(!toggleButton)} src="./src/assets/yt-logo.png" className='w-8 rounded-lg ' />
-                              <span onClick={() => navigate('/')} className='font-bold text-2xl'>Youtube</span>
+                              <img onClick={() => setToggleButton(!toggleButton)} src="https://cdn-icons-png.flaticon.com/512/725/725300.png" className='w-8 rounded-lg ' />
+                              <h1 onClick={() => navigate('/')} className='font-bold text-2xl'>Youtube</h1>
                         </div>
 
                         {/* secound div is for middle part */}
@@ -40,19 +40,20 @@ const NavBar = () => {
                               </div>
                         </div>
                         {/* thrid div is for right part */}
-                        <div className="right-part  px-4 flex items-center space-x-4">
-                              <div className="flex items-center gap-14  text-xl">
-                                    <HiOutlineVideoCamera />
-                                    <CiBellOn />
-                                    <button className='flex justify-center border-2 border-black p-1 rounded-full align-middle items-center  text-xl'>
+                        <div onClick={() => navigate('/signin')} className="right-part  px-4 py-1 flex items-center space-x-4 border-2 mr-2 border-[#292929] hover:bg-[#292929] transition-all duration-100 rounded-lg">
+                              <div className="flex items-center  text-xl ">
+                                    <button className='flex justify-center border-2 border-white  rounded-full align-middle items-center'>
                                           <IoPersonOutline />
-
                                     </button>
+
+                                    sign in
                               </div>
                         </div>
                   </div>
 
-                  <Outlet context={textContent} />
+                  <div className='flex justify-center items-center '>
+                              <Outlet context={textContent} />
+                  </div>
             </>
       );
 }

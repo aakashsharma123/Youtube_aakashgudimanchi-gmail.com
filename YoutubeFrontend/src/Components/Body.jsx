@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from './NavBar'
-import SideBar from './SideBar'
+import SideBar from './SideBar.jsx'
 import VideoDetails from './VideoDetails'
 import axios from 'axios';
 import FilterCategroy from './FilterButtons.jsx';
@@ -40,23 +40,19 @@ const Body = () => {
 
   return (
     <>
-      <div className='flex'>
-        <SideBar />
-        <div className='flex-grow'>
-          <div className='flex justify-around py-4 '>
-            <FilterCategroy setData={setData} data={filterData} />
-          </div>
-
-          <div className='grid grid-cols-3 w-full max-h-[700px] overflow-y-auto gap-5'>
-            {
-              filterData.map((each, index) => {
-                return <VideoDetails key={each.id} details={each} />
-              })
-            }
-          </div>
-        </div>
+      <div className="flex w-full h-full">
+       <SideBar />
+    {/* <div className="flex flex-col"> */}
+      <div className="flex-col space-x-9 justify-center py-4 w-full">
+        <FilterCategroy setData={setFilterData} data={filterData} />
+      {/* </div> */}
+      <div className="grid grid-cols-3 w-fit h-[700px] overflow-y-auto gap-5">
+        {filterData.map((each) => (
+          <VideoDetails key={each.id} details={each} />
+        ))}
       </div>
-
+    </div>
+  </div>
     </>
   )
 }

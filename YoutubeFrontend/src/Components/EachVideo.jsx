@@ -44,15 +44,15 @@ const EachVideo = () => {
 
     return (
         <>
-            <div className=' m-3 w-[1020px] '>
+            <div className=' m-4 w-[100%] '>
 
                 <div className='ml-4 mt-4 '>
                     <iframe
                         className='rounded-xl'
                         src={filteredData.video_url}
                         allowFullScreen lazy
-                        height={500}
-                        width={1000}
+                        height={400}
+                        width={800}
                     />
                 </div>
 
@@ -86,21 +86,27 @@ const EachVideo = () => {
                 </div >
                 <hr className='ml-4 ' />
 
-                <div className="container">
+                <div>
+            <div className="container">
 
-                    <div className="first-container bg-[#292929] border-none rounded-lg p-5 mt-2 ml-2 ">
-                        <span className='text-xl'>{filteredData.views}</span>
-                        <span className='text-xl ml-2'>{filteredData.time}</span>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis pariatur nisi facilis eaque sequi fuga tempore delectus temporibus eum ducimus quam itaque rerum autem, ullam velit minus tempora. Error, ipsam?...More</p>
+                <div className="first-container bg-[#292929] border-none rounded-lg p-5 mt-2 ml-2 ">
+                    <span className='text-xl'>{filteredData.views}</span>
+                    <span className='text-xl ml-2'>{filteredData.views}</span>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis pariatur nisi facilis eaque sequi fuga tempore delectus temporibus eum ducimus quam itaque rerum autem, ullam velit minus tempora. Error, ipsam?...More</p>
+                </div>
+
+                <div className="secound-container h-96 bg-[#292929] border-none rounded-lg m-7">
+                    <div className="mx-20 flex  mt-2  input-text bg-[#292929]">
+                        <input className=' mt-2 w-[90%] outline-none  py-3 rounded-lg bg-transparent border m border-gray-600 ' type="text" required placeholder='add comment' />
+                        <button className='ml-5 border rounded-lg bg-red-500 text-white px-5 mt-2 hover:bg-green-500'>Comment</button>
                     </div>
 
-                    <div className="secound-container border-2 border-black m-7">
-                        <div className="input-text bg-[#292929]">
-                            <input type="text" required />
-                            <button>Comment</button>
-                        </div>
+                    <div>
+                        
                     </div>
                 </div>
+            </div>
+        </div>
             </div>
         </>
     )

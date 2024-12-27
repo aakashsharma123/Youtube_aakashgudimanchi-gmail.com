@@ -18,7 +18,7 @@ const SuggestedVideos = () => {
 
   return (
         <>
-            <div className='w-full  grid grid-cols-1  p-2 '>
+            <div className='w-fit  grid grid-cols-1'>
                 {
                   SuggestedVideos.length > 0 ? (
                     SuggestedVideos.map ((each ) => (

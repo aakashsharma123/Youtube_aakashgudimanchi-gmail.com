@@ -29,16 +29,13 @@ import { CiFlag1 } from "react-icons/ci";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { RiFeedbackLine } from "react-icons/ri";
 import FilterCategroy from './FilterButtons';
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
 
-    const items1 = [
-        {
-            id: 1,
-            text: "Home",
-            icon: <IoMdHome />
-        },
+    const navigate = useNavigate()
 
+    const items1 = [
         {
             id: 2,
             text: "Shorts",
@@ -203,10 +200,19 @@ const SideBar = () => {
     return (
         <>
 
-      
-            <div className="main-container px-5 w-[20%] overflow-y-auto max-h-[700px]">
-                <div className="all-side-bar-items max-w-[100%] ">
+            {/* {
+            id: 1,
+            text: "Home",
+            icon: <IoMdHome />
+        }, */}
+            <div className="main-container  grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px]">
+                <div className="all-side-bar-items w-[100%] ">
+                    <div onClick={() => navigate('/')} className='item flex py-3 items-center space-x-3 font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100'>
+                        <span><IoMdHome /></span>
+                        <span>Home</span>
+                    </div>
                     {
+
                         items1.map(item => (
                             <>
                                 <div className="item flex py-3 items-center space-x-3 font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100">
@@ -313,7 +319,7 @@ const SideBar = () => {
                 </div>
             </div>
 
-                   
+
         </>
     )
 }
