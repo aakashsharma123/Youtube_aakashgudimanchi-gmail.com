@@ -2,5 +2,13 @@ import mongoose from 'mongoose';
 
 
 const CommentSchema = new mongoose.Schema ({
-    d
+    description : {
+        type : String,
+        required : true
+    },
+
+    
 })
+
+const comment = mongoose.model ('comments' , CommentSchema);
+export default comment

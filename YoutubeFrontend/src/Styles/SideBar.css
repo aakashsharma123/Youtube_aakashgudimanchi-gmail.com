@@ -1,0 +1,12 @@
+@media (min-width : 375px) and (max-width: 575px) {
+    .main-container {
+        max-width: 100%;
+        width: fit-content;
+    }
+
+    .all-side-bar-items {
+        width: 100%;
+
+    }
+
+}

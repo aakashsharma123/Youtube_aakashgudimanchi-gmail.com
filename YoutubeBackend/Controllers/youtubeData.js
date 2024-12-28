@@ -4,7 +4,7 @@ export const getYoutubeData = async (req, res) => {
     try {
         const youtubeData = await youtubeDataModel.find();
 
-        res.status(200).json(youtubeData);
+        res.status(200).json(youtubeData );
 
     } catch (err) {
         res.status(500).json({ message: "error occured while retreving data" });

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { FilterButtons } from '../utlies/FilterButtons.jsx'
 import axios from 'axios';
 import { data } from 'react-router-dom';
+import '../Styles/FilterButtons.css'
 
 const FilterCategroy = (props) => {
     const [youtubeDetails, setYoutubeDetails] = useState([]);
-
+    const [Token , setToken] = useState (localStorage.getItem ("token"))
 
     useEffect(() => {
         getDetails()
@@ -15,8 +16,16 @@ const FilterCategroy = (props) => {
     async function getDetails() {
 
         try {
-            const data = await axios.get('http://localhost:3000/');
-            setYoutubeDetails(data.data)
+            const url = 'http://localhost:3000/'
+            const response = await fetch (url , {
+                method : "GET",
+                headers : {
+                    'Authorization' : Token
+                }
+            })
+
+            const result = await response.json();
+            setYoutubeDetails(result)
         } catch (err) {
             console.log(err);
         }
@@ -38,14 +47,13 @@ const FilterCategroy = (props) => {
     }
     return (
         <>
-            {
+          <div className='filterbuttonContainer flex justify-around '>
+          {
                 FilterButtons.map((cat) => (
-                    <button onClick={(e) => handlefilterButtons(e)} className='bg-[#292929] py-1  px-5 hover:bg-[#212121] rounded-xl text-white '>{cat}</button>
+                     <button onClick={(e) => handlefilterButtons(e)} className='filterbutton bg-[#292929] py-1  px-5 hover:bg-[#212121] rounded-xl text-white '>{cat}</button>
                 ))
-
-
-
             }
+          </div>
         </>
     )
 }

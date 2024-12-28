@@ -29,11 +29,19 @@ import { CiFlag1 } from "react-icons/ci";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { RiFeedbackLine } from "react-icons/ri";
 import FilterCategroy from './FilterButtons';
-import { useNavigate } from 'react-router-dom';
+import '../Styles/SideBar.css';
+import { useNavigate, useOutlet, useOutletContext } from 'react-router-dom';
 
 const SideBar = () => {
 
     const navigate = useNavigate()
+    // const [toggleButton , setToggleButton] = useState (false);
+    const {toggleSideBar} = useOutletContext();
+
+    console.log(toggleSideBar);
+    
+
+
 
     const items1 = [
         {
@@ -205,7 +213,8 @@ const SideBar = () => {
             text: "Home",
             icon: <IoMdHome />
         }, */}
-            <div className="main-container  grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px]">
+            {toggleSideBar && (
+                <div className="main-container  grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px]">
                 <div className="all-side-bar-items w-[100%] ">
                     <div onClick={() => navigate('/')} className='item flex py-3 items-center space-x-3 font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100'>
                         <span><IoMdHome /></span>
@@ -318,6 +327,13 @@ const SideBar = () => {
                     </div>
                 </div>
             </div>
+            )}
+
+            {!toggleSideBar && (
+                <div>
+                    
+                </div>
+            )}
 
 
         </>
@@ -326,10 +342,3 @@ const SideBar = () => {
 
 export default SideBar
 
-
-// AboutPressCopyrightContact usCreatorsAdvertiseDevelopers
-// TermsPrivacyPolicy & SafetyHow YouTube worksTest new features
-
-
-// TermsPrivacyPolicy & SafetyHow YouTube worksTest new features
-// © 2024 Google LLC

@@ -4,15 +4,39 @@ import { NavLink } from 'react-router-dom';
 
 const SuggestedVideos = () => {
   const [SuggestedVideos, setSuggestedVideos] = useState ([]);
+  const [Token , setToken] = useState (localStorage.getItem ("token"))
+  // axios.get ('http://localhost:3000/')
+  //     .then ((data) => {
+  //         setSuggestedVideos (data.data)
+  //     })
+  //     .catch ((err) => {
+  //         console.log ("error while fetching data from backend to frontend")
+  //     })
+
+
+  const suggestedVideosFetch = async () => {
+    const url = 'http://localhost:3000/'
+    const response = await fetch (url , {
+      method : 'GET',
+      headers : {
+        'Authorization' : Token
+      }
+    })
+
+
+    
+    if (response.ok) {
+      const result = await response.json();
+      setSuggestedVideos(result)
+    }
+  }
+  
+  
+
+
 
   useEffect (() => {
-      axios.get ('http://localhost:3000/')
-      .then ((data) => {
-          setSuggestedVideos (data.data)
-      })
-      .catch ((err) => {
-          console.log ("error while fetching data from backend to frontend")
-      })
+    suggestedVideosFetch()
   })
 
 

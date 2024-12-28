@@ -1,0 +1,61 @@
+/* Extra Small Devices */
+@media (min-width : 375px) and (max-width: 575px) {
+    .container {
+        margin: 0;
+        padding: 0;
+        max-width: 100%;  
+        justify-content: space-between;  
+        gap: 10px; 
+    }
+
+    .left-part {
+        width: fit-content;
+        margin: 0%;
+        
+    }
+
+    .left-part > img {
+        max-width: 20px;
+    }
+
+    .left-part > h1 {
+        font-size: small;
+    }
+
+    .middle-part {
+        width:100% ;
+        
+    }
+
+    .input-div {
+        width:100% ;
+
+    }
+
+    .input-div > input {
+        width:100%;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .input-div > button {
+        
+    }
+
+   .recording  {
+        display: none;
+
+    }
+
+    .recording-container {
+        display: none;
+    }
+
+    .showContainer {
+        position: absolute;
+        left: 2rem;
+    }
+
+}
+
+

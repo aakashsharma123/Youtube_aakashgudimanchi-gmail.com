@@ -28,7 +28,7 @@ export async function login (req , res) {
     const {email , password} = req.body;
 
     try {
-        const user = await User.findOne (email);
+        const user = await User.findOne({email});
 
         if (!user) {
             return res.status(403).json ({message : "you are not registered first register yourself"} )
@@ -36,18 +36,21 @@ export async function login (req , res) {
 
         const isPassword = await bcrypt.compare (password , user.password);
 
-        if (isPassword === 'false') {
+        if (isPassword === false) {
             return res.status (404).json ({message : "email or password is invalid"})
         }
 
-        const accessToken = Jwt.sign ({email : user.email , password : user.password} , process.env.JWT_Password , {expiresIn : '7d'})
+        const accessToken = Jwt.sign ({password : user.password} , "aakash@2002" , {expiresIn : '7d'})
 
-        res.status (200).json ({
+       if (accessToken) {
+        res.status(200).json ({
             message : "login successfull ",
              success : true,
-            accessToken : accessToken,
-            name : user.name
+            token : accessToken,
+            name : user.name,
+            email : user.email
             })
+       }
 
 
     }catch (err) {

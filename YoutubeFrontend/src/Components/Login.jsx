@@ -1,49 +1,53 @@
 import React, { useState } from 'react';
 import { FaHouse } from "react-icons/fa6";
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import { ErrorMessage, successMessage } from '../ErrorHandle/HandleResponse.js';
-
-const Signin = () => {
-    const [signUpData, setSignUpData] = useState({
-        name: '',
+import { ErrorMessage, successMessage } from '../ErrorHandle/HandleResponse';
+import Navbar from './NavBar.jsx';
+const Login = () => {
+    const [LoginData, setLoginData] = useState({
         email: '',
         password: ''
-    });
+    });    
+    const [login , setlogin] = useState (false);
+
 
     const navigate = useNavigate();
 
     const handleForm =async (e) => {
         e.preventDefault();
-        const {name , email , password} = signUpData;
+        const {email , password} = LoginData;
 
-        if (!name || !email|| !password) {
-            return successMessage ("name or email or password not filled")
+        if (!email|| !password) {
+            return ErrorMessage ("email or password not filled")
         }
         try {
-            const url = 'http://localhost:3000/auth/register'
+            const url = 'http://localhost:3000/auth/login'
             const response = await fetch (url , {
                 method : "POST",
+
                 headers : {
-                    "content-Type" : "application/json"
+                    "Content-Type" : "application/json"
                 },
 
-                body : JSON.stringify (signUpData)
+                body : JSON.stringify (LoginData)
             })
 
             const result = await response.json();
-            console.log(result);
+            const {message , success , token , name , email} = result
 
-            const {message , success} = result
+            if (token) {
+                localStorage.setItem ("token" , token)
+                localStorage.setItem ("name" , name)
+                localStorage.setItem ("email" , email)
+            }
 
-            if (success === true) {
-                return successMessage ("resgisteration successfull")
-            }else {
-                 ErrorMessage ("u have registerd already please log in")
-
-                setTimeout (() => {
-                    navigate ('/login')
-                } , [2000])
+            if (localStorage.getItem ("token")) {
+                setTimeout(() => {
+                    navigate('/')
+                },  [2000]);
+            }else{
+                ErrorMessage("email or password is wrong")
             }
             
         }catch (err) {
@@ -57,20 +61,21 @@ const Signin = () => {
     const handleData = (e) => {
        const {name , value } = e.target;
 
-       const copyofSignUpdata = {...signUpData};    
-       copyofSignUpdata[name] = value;
-       setSignUpData (copyofSignUpdata)
+       const copysetLoginData = {...LoginData};    
+       copysetLoginData[name] = value;
+       setLoginData (copysetLoginData)
     };
 
 
-    console.log(signUpData);
+    // console.log(Token);
+    // console.log(typeof (Token));
     
 
     return (
         <>
             <div className="container h-screen flex justify-center items-center">
-                <div className='bg-[#292929] h-fit w-[60%] rounded-lg ml-44'>
-                    <div className='flex justify-center items-center gap-4  '>
+                <div className='bg-[#292929] h-fit w-[60%] ml-44 rounded-lg '>
+                    <div className='flex justify-center items-center gap-4 '>
                         <div className='flex items-center'>
                             <img
                                 src="https://cdn-icons-png.flaticon.com/512/725/725300.png"
@@ -78,28 +83,20 @@ const Signin = () => {
                                 width={60}
                                 height={100}
                             />
-                            <span className='text-xl font-bold'>Youtube Sign-up</span>
+                            <span className='text-xl font-bold'>Youtube Login</span>
                         </div>
                         <FaHouse onClick={() => navigate('/')} className='text-2xl text-red-500 cursor-pointer' />
                     </div>
 
-                    <div className='flex flex-col w-[60%] mx-auto'>
+                    <div className='flex flex-col w-[60%] py-5 mx-auto'>
                         <form onSubmit={handleForm} className='flex flex-col w-[100%] mx-auto gap-5 h-full mt-5'>
-                            <input 
-                                onChange={handleData} 
-                                name='name' 
-                                type="text" 
-                                className='py-4 outline-none font-bold text-black rounded-md' 
-                                placeholder='Enter name' 
-                                value={signUpData.name} 
-                            />
                             <input 
                                 onChange={handleData} 
                                 name='email' 
                                 type="email" // Changed type to "email" for better validation
                                 className='py-4 outline-none font-bold text-black rounded-md' 
                                 placeholder='Enter Email' 
-                                value={signUpData.email} 
+                                value={LoginData.email} 
                             />
                             <input 
                                 onChange={handleData} 
@@ -107,14 +104,14 @@ const Signin = () => {
                                 type="password" 
                                 className='py-4 outline-none font-bold text-black rounded-md' 
                                 placeholder='Enter Password' 
-                                value={signUpData.password} 
+                                value={LoginData.password} 
                             />
                             <button type="submit" className='bg-red-500 py-2'>Submit</button>
                         </form>
 
-                        <div className='flex gap-x-5 mt-5'>
-                            <p className='text-xl'>already have an account? </p>
-                            <p onClick={() => navigate('/login')} className='text-red-500 text-xl font-bold cursor-pointer'>login  here</p>
+                        <div className='flex gap-x-5 mt-5 '>
+                            <p className='text-xl'>Don't have an account? </p>
+                            <p onClick={() => navigate('/signin')} className='text-red-500 font-bold'>Sign up </p>
                         </div>
                     </div>
                 </div>
@@ -125,4 +122,4 @@ const Signin = () => {
     );
 }
 
-export default Signin;
+export default Login;

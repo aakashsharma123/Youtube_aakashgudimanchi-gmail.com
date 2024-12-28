@@ -1,6 +1,7 @@
 import { getYoutubeData , postYoutubeData } from "../Controllers/youtubeData.js";
+import {Auth} from '../Middlewares/Auth.js'
 
 export function YoutubeDataRoutes (app) {
-    app.get ('/',getYoutubeData),
+    app.get ('/', getYoutubeData),
     app.post ('/post' , postYoutubeData)
 }

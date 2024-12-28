@@ -8,6 +8,9 @@ import EachVideo from './Components/EachVideo.jsx'
 import SuggestedVideos from './Components/SuggestedVideos.jsx'
 import SideBar from './Components/SideBar.jsx'
 import Signin from './Components/Signin.jsx'
+import Login from './Components/Login.jsx'
+import React from 'react'
+import ViewProfile from './Components/ViewProfile.jsx'
 
 const router = createBrowserRouter ([
   {
@@ -18,6 +21,13 @@ const router = createBrowserRouter ([
         index : true,
         element : <Body/>
       },
+
+      
+      {
+        path : "/viewProfile",
+        element : <ViewProfile />
+      },
+
 
       {
         path : '/video/:id',
@@ -37,6 +47,17 @@ const router = createBrowserRouter ([
   {
     path : '/signin',
     element : <Signin/>
+  },
+
+  {
+    path : "/login",
+    element : <Login />
+  },
+
+
+  {
+    path : "/viewProfile",
+    element : <ViewProfile />
   }
 
  
