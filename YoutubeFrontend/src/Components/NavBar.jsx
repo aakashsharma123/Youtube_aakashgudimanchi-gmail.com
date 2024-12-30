@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiSearch } from "react-icons/ci";
 import { FaMicrophone } from "react-icons/fa";
@@ -18,44 +18,39 @@ import { IoIosLogOut } from "react-icons/io";
 import '../Styles/NavBar.css'
 
 const NavBar = () => {
-      const [Token , setToken] = useState(localStorage.getItem("token"));
-      const [tokenHolder , setTokenHolder] = useState (localStorage.getItem ("name"));
-      const [email , setEmail] = useState (localStorage.getItem ("email"));
-       console.log(Token , tokenHolder);
-      
-      const navigate = useNavigate()
-      const [textContent , setTextContent] = useState ('');
-      const [toggleButton , setToggleButton] = useState (false);
-      const [toggleSideBar , setToggleSidebar] = useState(true);
-
-
-      console.log(toggleButton);
-      
-     
+      const [Token, setToken] = useState(localStorage.getItem("token") || '');
+      const [tokenHolder, setTokenHolder] = useState(localStorage.getItem("name") || '' );
+      const [email, setEmail] = useState(localStorage.getItem("email") || '');
+       const [textContent, setTextContent] = useState('');
+      const [toggleButton, setToggleButton] = useState(false);
+      const [toggleSideBar, setToggleSidebar] = useState(true);
+      const navigate = useNavigate();
 
       const handleLogout = () => {
             localStorage.removeItem("token");
             localStorage.removeItem("name");
+            localStorage.removeItem('email')
             setToken(null);
             setTokenHolder(null);
+            setEmail(null);
       }
 
       return (
             <>
-                  <div className="container  flex justify-between items-center px-4 max-w-full">
+                  <div className="container  flex justify-between items-center px-4 max-w-full ">
                         {/* first div is for left part */}
 
                         <div className="left-part flex items-center  space-x-3 ">
-                              <GiHamburgerMenu onClick={() => setToggleSidebar(!toggleSideBar)}  className='text-xl' />
-                              <img onClick={() => setToggleButton(!toggleButton)} src="https://cdn-icons-png.flaticon.com/512/725/725300.png" className='w-8 rounded-lg ' />
-                              <h1 onClick={() => navigate('/')} className='font-bold text-2xl'>Youtube</h1>
+                              <GiHamburgerMenu onClick={() => setToggleSidebar(!toggleSideBar)} className='text-xl xs:hidden' />
+                              <img onClick={() => setToggleButton(!toggleButton)} src="https://cdn-icons-png.flaticon.com/512/725/725300.png" className='w-8 rounded-lg  ' />
+                              <h1 onClick={() => navigate('/')} className='font-bold text-2xl xs:hidden'>Youtube</h1>
                         </div>
 
                         {/* secound div is for middle part */}
                         <div className="middle-part  flex items-center w-[35%]">
                               {/* input text here  */}
                               <div className="input-div  w-[100%] flex   rounded-l-3xl">
-                                    <input   onChange={(e) => setTextContent(e.target.value)} type="text" placeholder='search' className='w-[100%] bg-transparent  rounded-l-lg outline-none border border-[#212121] py-2 ' />
+                                    <input onChange={(e) => setTextContent(e.target.value)} type="text" placeholder='search' className='w-[100%] bg-transparent  rounded-l-lg outline-none border border-[#212121] py-2 ' />
                                     <button className='border-none  flex items-center bg-[#212121] px-3 rounded-r-2xl'>
                                           <CiSearch />
                                     </button>
@@ -66,76 +61,75 @@ const NavBar = () => {
                               </div>
                         </div>
                         {/* thrid div is for right part */}
-                        {/* onClick={() => handleLogout()} */}
+                        
 
                         {Token && (
                               <div onClick={() => setToggleButton(!toggleButton)} className=''  >
                                     <div className='toggleIconContainer'  >
-                                                <span className='flex  hover:bg-[#212121] items-center px-4 text-xl text-red-600 bg-white font-extrabold py-1 rounded-full  '>{tokenHolder.charAt(0).toUpperCase()}</span>
+                                          <span className='flex  hover:bg-[#212121] items-center px-4 text-xl text-red-600 bg-white font-extrabold py-1 rounded-full  '>{tokenHolder.charAt(0).toUpperCase()}</span>
 
                                     </div>
 
-                                    <div className= {toggleButton ? 'showContainer  rounded-xl py-2 px-4 absolute bg-[#292929] h-fit w-fit right-12 transition-all duration-500 flex flex-col gap-4 ' : 'hideContainer hidden'}>
+                                    <div className={toggleButton ? 'showContainer  rounded-xl py-2 px-4 absolute bg-[#292929] h-fit w-fit right-12 transition-all duration-500 flex flex-col gap-4 ' : 'hideContainer hidden'}>
 
-                                                      <div className='container flex flex-col gap-4  '>
-                                                                  <Link className='flex items-center border-b-2 '>
-                                                                        <div className=''>
-                                                                              <span className='text-2xl   text-red-600 font-bold'>{tokenHolder.charAt(0).toUpperCase()}</span>
-                                                                        </div>
-                                                                        <div className='flex flex-col ml-4'>
-                                                                              <span className='text-xl'>{tokenHolder}</span>
-                                                                              <span className='text-xl'>{email}</span>
-                                                                              <Link to={'/ViewProfile'}><span  className='text-xl text-blue-600 font-extrabold hover:text-red-600 '>View your Channel</span></Link>
-                                                                        </div>
-                                                                  </Link>
-
-                                                                  <Link className='flex items-center gap-4 border-b-2 '>
-                                                                        <FaGoogle className='text-xl'/>
-                                                                        <span className='ml-2 text-2xl hover:text-red-600'>Google</span>
-                                                                  </Link>
-
-
-                                                                  <Link className='flex items-center border-b-2 gap-4 '>
-                                                                        <FaBucket className='text-xl'/>
-                                                                        <span className='ml-2 text-xl hover:text-red-600'>Purchase and MemberShip</span>
-                                                                  </Link>
-
-
-                                                                  <Link className='flex items-center border-b-2 gap-4 '>
-                                                                        <IoIosSwitch className='text-xl'/>
-                                                                        <span className='ml-2 text-xl hover:text-red-600'>Swicth Account</span>
-                                                                  </Link>
-
-
-                                                                  <Link onClick={() => handleLogout()} className='flex items-center  '>
-                                                                        <IoIosLogOut className='text-xl'/>
-                                                                        <span className='ml-2 text-xl hover:text-red-600'>Logout</span>
-                                                                  </Link>
-
-                                                                  
-                                                           
+                                          <div className='container flex flex-col gap-4  '>
+                                                <Link className='flex items-center border-b-2 '>
+                                                      <div className=''>
+                                                            <span className='text-2xl   text-red-600 font-bold'>{tokenHolder.charAt(0).toUpperCase()}</span>
                                                       </div>
+                                                      <div className='flex flex-col ml-4'>
+                                                            <span className='text-xl'>{tokenHolder}</span>
+                                                            <span className='text-xl'>{email}</span>
+                                                            <Link to={'/ViewProfile'}><span className='text-xl text-blue-600 font-extrabold hover:text-red-600 '>View your Channel</span></Link>
+                                                      </div>
+                                                </Link>
+
+                                                <Link className='flex items-center gap-4 border-b-2 '>
+                                                      <FaGoogle className='text-xl' />
+                                                      <span className='ml-2 text-2xl hover:text-red-600'>Google</span>
+                                                </Link>
+
+
+                                                <Link className='flex items-center border-b-2 gap-4 '>
+                                                      <FaBucket className='text-xl' />
+                                                      <span className='ml-2 text-xl hover:text-red-600'>Purchase and MemberShip</span>
+                                                </Link>
+
+
+                                                <Link className='flex items-center border-b-2 gap-4 '>
+                                                      <IoIosSwitch className='text-xl' />
+                                                      <span className='ml-2 text-xl hover:text-red-600'>Swicth Account</span>
+                                                </Link>
+
+
+                                                <Link onClick={() => handleLogout()} className='flex items-center  '>
+                                                      <IoIosLogOut className='text-xl' />
+                                                      <span className='ml-2 text-xl hover:text-red-600'>Logout</span>
+                                                </Link>
+
+
+
+                                          </div>
                                     </div>
                               </div>
                         )}
-                       {!Token && (
-                         <div onClick={() => navigate('/signin')} className="right-part  px-4 py-1 flex items-center space-x-4 border-2 mr-2 border-[#292929] hover:bg-[#292929] transition-all duration-100 rounded-lg">
-                              <div className="flex items-center  text-xl ">
-                                    <button className='flex justify-center border-2 border-white  rounded-full align-middle items-center'>
-                                          <IoPersonOutline />
-                                    </button>
+                        {!Token && (
+                              <div onClick={() => navigate('/signin')} className="right-part xs:scale-x-50 px-4 py-1 flex items-center space-x-4 border-2 mr-2 border-[#292929] hover:bg-[#292929] transition-all duration-100 rounded-lg">
+                                    <div className="flex items-center  text-xl xs:text-sm xs:mr-2 " >
+                                          <button className='flex justify-center border-2 border-white  rounded-full align-middle items-center xs:px-2 xs:py-1 '>
+                                                <IoPersonOutline className='xs:size-3' />
+                                          </button>
 
-                                    sign in
+                                          <span className='xs:text-sm' >Signin</span>
+                                    </div>
                               </div>
-                        </div>
-                       )}
+                        )}
                   </div>
 
                   <div className='flex justify-center items-center '>
-                              <Outlet context={{textContent , toggleSideBar}}   />
+                        <Outlet context={{ textContent, toggleSideBar }} />
                   </div>
             </>
       );
 }
-// toggleSideBar textContent
 export default NavBar;

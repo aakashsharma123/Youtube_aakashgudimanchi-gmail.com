@@ -5,14 +5,6 @@ import { NavLink } from 'react-router-dom';
 const SuggestedVideos = () => {
   const [SuggestedVideos, setSuggestedVideos] = useState ([]);
   const [Token , setToken] = useState (localStorage.getItem ("token"))
-  // axios.get ('http://localhost:3000/')
-  //     .then ((data) => {
-  //         setSuggestedVideos (data.data)
-  //     })
-  //     .catch ((err) => {
-  //         console.log ("error while fetching data from backend to frontend")
-  //     })
-
 
   const suggestedVideosFetch = async () => {
     const url = 'http://localhost:3000/'
@@ -22,9 +14,6 @@ const SuggestedVideos = () => {
         'Authorization' : Token
       }
     })
-
-
-    
     if (response.ok) {
       const result = await response.json();
       setSuggestedVideos(result)
@@ -37,12 +26,13 @@ const SuggestedVideos = () => {
 
   useEffect (() => {
     suggestedVideosFetch()
-  })
+  },[])
 
 
   return (
         <>
-            <div className='w-fit  grid grid-cols-1'>
+            <div className='w-fit  grid grid-cols-1 xs:scale-75 xs:-translate-y-[500px]  '>
+             
                 {
                   SuggestedVideos.length > 0 ? (
                     SuggestedVideos.map ((each ) => (

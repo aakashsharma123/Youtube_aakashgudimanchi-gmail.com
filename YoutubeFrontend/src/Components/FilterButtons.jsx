@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FilterButtons } from '../utlies/FilterButtons.jsx'
 import axios from 'axios';
 import { data } from 'react-router-dom';
-import '../Styles/FilterButtons.css'
+// import '../Styles/FilterButtons.css'
 
 const FilterCategroy = (props) => {
     const [youtubeDetails, setYoutubeDetails] = useState([]);
@@ -47,7 +47,7 @@ const FilterCategroy = (props) => {
     }
     return (
         <>
-          <div className='filterbuttonContainer flex justify-around '>
+          <div className='filterbuttonContainer flex justify-around  xs:flex xs:justify-start xs:scale-50  xs:-translate-x-56'>       
           {
                 FilterButtons.map((cat) => (
                      <button onClick={(e) => handlefilterButtons(e)} className='filterbutton bg-[#292929] py-1  px-5 hover:bg-[#212121] rounded-xl text-white '>{cat}</button>

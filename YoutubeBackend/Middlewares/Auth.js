@@ -1,7 +1,7 @@
 import Jwt from 'jsonwebtoken';
+import User from '../Models/User.js';
 
-
-export function Auth (req , res ,next) {
+export async function Auth (req , res ,next) {
     const auth = req.headers['authorization'];
 
     if (!auth) {
@@ -12,7 +12,7 @@ export function Auth (req , res ,next) {
 
     if (decoded) {
         console.log("your token is verifed");
-        req.user = decoded
+        req.user = await User.findOne ({email : decoded.email});
         next();
     }
 }

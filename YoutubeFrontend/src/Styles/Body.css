@@ -1,0 +1,15 @@
+@media (min-width : 375px) and (max-width: 575px) {
+    .videocontainer {
+        width: 100%;
+        padding: 0%;
+        display: grid;
+        grid-template-columns: repeat(1 ,1fr);
+        grid-template-rows: auto;
+        border: 2px solid wheat;
+        margin-right: 1rem;
+        justify-content: center;
+        transform: scaleX(1.2);
+    }
+
+   
+}

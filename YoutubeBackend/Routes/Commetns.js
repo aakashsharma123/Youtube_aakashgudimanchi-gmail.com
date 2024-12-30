@@ -1,8 +1,11 @@
-import {Router} from 'express';
+import { addComment , getComment } from "../Controllers/CommentController.js";
+import { Auth } from "../Middlewares/Auth.js";
 
-const router = Router();
+export function commentRoutes (app) {
+    app.post ('/addcomment',  Auth , addComment)
+    app.get ('/getcomments/:id' , Auth ,getComment )
+    app.put ('/updatecomment')
+    app.delete ('/deletecomment');
+}
 
-router.get ('/getComments');
-router.post ('/addComment');
-router.put('/updateComment');
-router.delete('/deleteComment');
+export default commentRoutes

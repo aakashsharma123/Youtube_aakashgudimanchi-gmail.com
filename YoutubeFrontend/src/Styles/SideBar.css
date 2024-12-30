@@ -1,7 +1,10 @@
 @media (min-width : 375px) and (max-width: 575px) {
     .main-container {
         max-width: 100%;
-        width: fit-content;
+        width: 100%;
+        position: absolute;
+        background-color: #212121;
+        z-index: 1;
     }
 
     .all-side-bar-items {

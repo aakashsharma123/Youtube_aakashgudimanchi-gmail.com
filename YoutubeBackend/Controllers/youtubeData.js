@@ -1,13 +1,13 @@
+import mongoose from "mongoose";
 import { youtubeDataModel } from "../Models/Youtubedatamodel.js";
+import User from "../Models/User.js";
 
 export const getYoutubeData = async (req, res) => {
     try {
         const youtubeData = await youtubeDataModel.find();
-
-        res.status(200).json(youtubeData );
-
+            res.status(200).json(youtubeData);
     } catch (err) {
-        res.status(500).json({ message: "error occured while retreving data" });
+        res.status(500).json({ message: "error occurred while retrieving data" });
     }
 }
 
@@ -25,5 +25,17 @@ export async function  postYoutubeData  (req , res)  {
 
     }catch (err) {
             res.status (404).json ({message : 'something went wrong'})
+    }
+}
+
+export async function UpdateYoutubeData (req , res) {
+
+    try {
+        const updateData = await youtubeDataModel.updateMany ({} , {$unset : {comment_id : ""}})
+        return res.status(200).json({message : "updated"})
+    }catch (err) {
+        console.log(err);
+        
+        return res.status(500).json({message : "internal problem"})
     }
 }

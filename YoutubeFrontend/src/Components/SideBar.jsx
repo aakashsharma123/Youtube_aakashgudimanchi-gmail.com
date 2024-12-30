@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { IoMdHome } from "react-icons/io";
+import { IoMdHome, IoMdVideocam } from "react-icons/io";
 import { SiYoutubeshorts } from "react-icons/si";
-import { MdOutlineSubscriptions } from "react-icons/md";
+import { MdHome, MdOutlineSubscriptions } from "react-icons/md";
 import { PiGreaterThan } from "react-icons/pi";
 import { DiAtom } from "react-icons/di";
 import { GoHistory } from "react-icons/go";
@@ -20,7 +20,7 @@ import { GiTrophyCup } from "react-icons/gi";
 import { GoLightBulb } from "react-icons/go";
 import { MdOutlineCurtainsClosed } from "react-icons/md";
 import { MdPodcasts } from "react-icons/md";
-import { FaYoutube } from "react-icons/fa6";
+import { FaPerson, FaYoutube } from "react-icons/fa6";
 import { SiYoutubemusic } from "react-icons/si";
 import { SiYoutubestudio } from "react-icons/si";
 import { SiYoutubekids } from "react-icons/si";
@@ -29,8 +29,10 @@ import { CiFlag1 } from "react-icons/ci";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { RiFeedbackLine } from "react-icons/ri";
 import FilterCategroy from './FilterButtons';
-import '../Styles/SideBar.css';
+// import '../Styles/SideBar.css';
 import { useNavigate, useOutlet, useOutletContext } from 'react-router-dom';
+import { TiSocialYoutubeCircular } from "react-icons/ti";
+import { FaHistory } from 'react-icons/fa';
 
 const SideBar = () => {
 
@@ -215,7 +217,7 @@ const SideBar = () => {
         }, */}
             {toggleSideBar && (
                 <div className="main-container  grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px]">
-                <div className="all-side-bar-items w-[100%] ">
+                <div className="all-side-bar-items w-full ">
                     <div onClick={() => navigate('/')} className='item flex py-3 items-center space-x-3 font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100'>
                         <span><IoMdHome /></span>
                         <span>Home</span>
@@ -307,7 +309,7 @@ const SideBar = () => {
                     <hr />
                     <br />
 
-                    <div className="text ">
+                    <div className="text">
                         <p className='font-light text-xs space-x-3 flex justify-between'><span>About</span> <span>Press</span> <span>Copyright</span></p>
 
 
@@ -330,9 +332,7 @@ const SideBar = () => {
             )}
 
             {!toggleSideBar && (
-                <div>
-                    
-                </div>
+                ""
             )}
 
 

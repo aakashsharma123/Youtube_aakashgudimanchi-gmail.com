@@ -2,6 +2,10 @@
     .filterbuttonContainer {
         margin: 0%;
         padding: 0%;
+        transform: scale(0.4);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
         
     }
 }

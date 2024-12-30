@@ -11,6 +11,7 @@ import Signin from './Components/Signin.jsx'
 import Login from './Components/Login.jsx'
 import React from 'react'
 import ViewProfile from './Components/ViewProfile.jsx'
+import VideoLayout from './Components/videoLayout.jsx'
 
 const router = createBrowserRouter ([
   {
@@ -31,15 +32,7 @@ const router = createBrowserRouter ([
 
       {
         path : '/video/:id',
-    
-        element : [
-          <div className='flex '>
-            <SideBar />
-            <EachVideo/>
-            <SuggestedVideos/>
-          </div>
-        ]
-    
+        element : <VideoLayout/>   
       }
     ]
   },

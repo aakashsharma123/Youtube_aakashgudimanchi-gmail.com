@@ -40,7 +40,7 @@ export async function login (req , res) {
             return res.status (404).json ({message : "email or password is invalid"})
         }
 
-        const accessToken = Jwt.sign ({password : user.password} , "aakash@2002" , {expiresIn : '7d'})
+        const accessToken = Jwt.sign ({email : user.email , password : user.password} , "aakash@2002" , {expiresIn : '7d'})
 
        if (accessToken) {
         res.status(200).json ({

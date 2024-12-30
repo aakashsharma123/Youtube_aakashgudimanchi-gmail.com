@@ -1,0 +1,23 @@
+@media (min-width : 375px) and (max-width: 575px) {
+    .videoDetailsContainer {
+        width: 100%;
+        margin-top: 0%;
+        display: grid;
+        grid-template-columns:repeat(1 , 1fr);
+        grid-template-rows: 1fr;
+        border: 2px solid black;
+        
+    }
+
+    .image-container {
+        width:100%;
+        max-height: 100%;
+    }
+
+    .personcircle {
+        
+    }
+    .text-description {
+        
+    }
+}

@@ -7,6 +7,7 @@ import cros from 'cors'
 import dotenv from 'dotenv'
 dotenv.config();
 import router from '../YoutubeBackend/Routes/AuthUser.js'
+import commentRoutes from './Routes/Commetns.js';
 
 
 
@@ -14,9 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded ({extended : true}))
 app.use(bodyParser.json());
 app.use (cros())
-app.use ('/auth' , router)
-
+app.use ('/auth' , router);
 YoutubeDataRoutes(app)
+commentRoutes(app)
 
 const port = process.env.port
 

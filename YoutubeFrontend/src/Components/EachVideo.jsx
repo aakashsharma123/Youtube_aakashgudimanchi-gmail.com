@@ -5,50 +5,55 @@ import { CiBellOn } from "react-icons/ci";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import { MdDownload } from "react-icons/md";
+import Comments from './Comments'; // Assuming this component exists
+// Removed unused axios import
 
 const EachVideo = () => {
     const { id } = useParams();
     const [youtubeData, setYoutubeData] = useState([]);
     const [filteredData, setFilteredData] = useState(null);
     const [Token, setToken] = useState(localStorage.getItem("token"));
-
+    const [Email, setEmail] = useState(localStorage.getItem('email'));
+    
+    // Function to fetch video data
     const eachVideoFetch = async () => {
         try {
             const url = 'http://localhost:3000/';
             const response = await fetch(url, {
                 method: "GET",
                 headers: {
-                    'Authorization': Token
+                    'Authorization': Token,
                 }
             });
 
-            const result = await response.json();
-
             if (response.ok) {
+                const result = await response.json();
                 setYoutubeData(result);
+                console.log("Fetched video data: ", result);
+            } else {
+                console.log("Failed to fetch video data: ", response.statusText);
             }
         } catch (err) {
-            console.log('something went wrong');
+            console.log('something went wrong', err);
         }
     };
 
+    // Fetch video data on component mount
     useEffect(() => {
         eachVideoFetch();
     }, []);
 
+    // Filter the video data based on the id
     useEffect(() => {
         const filterDetails = youtubeData.filter(each => each._id === id);
         setFilteredData(filterDetails[0]);
+        console.log("Filtered video data: ", filterDetails[0]);
     }, [youtubeData, id]);
-
-    if (!filteredData) {
-        return <h1>The video is being fetched...</h1>;
-    }
 
     return (
         <>
-            <div className='m-4 w-[100%]'>
-                <div className='ml-4 mt-4'>
+            <div className='m-4 w-[100%] xs:h-screen xs:scale-x-50 xs:scale-50 xs:-translate-x-14 xs:-translate-y-40'>
+                <div className='ml-4 mt-4 xs:w-[100%]'>
                     <iframe
                         className='rounded-xl'
                         src={filteredData.video_url}
@@ -57,7 +62,6 @@ const EachVideo = () => {
                         width={800}
                     />
                 </div>
-
                 <p className='px-5 text-2xl'>{filteredData.description}</p>
 
                 <div className='p-4 flex items-center justify-between'>
@@ -87,6 +91,7 @@ const EachVideo = () => {
                         <div className='border rounded-full px-3'>...</div>
                     </div>
                 </div>
+
                 <hr className='ml-4' />
 
                 <div className="container">
@@ -97,23 +102,26 @@ const EachVideo = () => {
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis pariatur nisi facilis eaque sequi fuga tempore delectus temporibus eum ducimus quam itaque rerum autem, ullam velit minus tempora. Error, ipsam?...More
                         </p>
                     </div>
-                    { Token && (
-                         <div className="secound-container h-96 bg-[#292929] border-none rounded-lg m-7">
-                         <div className="mx-20 flex  mt-2  input-text bg-[#292929]">
-                             <input className=' mt-2 w-[90%] outline-none  py-3 rounded-lg bg-transparent border m border-gray-600 ' type="text" required placeholder='add comment' />
-                             <button className='ml-5 border rounded-lg bg-red-500 text-white px-5 mt-2 hover:bg-green-500'>Comment</button>
-                         </div>
-    
-                         </div>
+                    {Token && (
+                        <div className="secound-container h-96 bg-[#292929] border-none rounded-lg m-7">
+                            
+                            <div className='comments'>
+                                    <Comments />
+                            </div>
+                        </div>
                     )}
 
                     {!Token && (
-                         <div className="secound-container h-96 bg-[#292929] border-none rounded-lg m-7">
-                         <div className="mx-20 flex  mt-2  input-text bg-[#292929]">
+                        <div className="secound-container h-96 bg-[#292929] border-none rounded-lg m-7 xs:translate-x-2">
+                            <div className="mx-20 flex mt-2 input-text bg-[#292929]">
                                 <p className='mx-auto text-2xl'>Please <span className='text-green-500 underline'>login</span> in order to add comments</p>
-                         </div>
-    
-                         </div>
+                            </div>
+                            <div className='comments'>
+                                <div>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     )}
                 </div>
             </div>
@@ -122,19 +130,3 @@ const EachVideo = () => {
 };
 
 export default EachVideo;
-
-
-
-
-
-
-
-
-
-//                     div className="secound-container h-96 bg-[#292929] border-none rounded-lg m-7">
-//                     <div className="mx-20 flex  mt-2  input-text bg-[#292929]">
-//                         <input className=' mt-2 w-[90%] outline-none  py-3 rounded-lg bg-transparent border m border-gray-600 ' type="text" required placeholder='add comment' />
-//                         <button className='ml-5 border rounded-lg bg-red-500 text-white px-5 mt-2 hover:bg-green-500'>Comment</button>
-//                     </div>
-
-//                     <div>
