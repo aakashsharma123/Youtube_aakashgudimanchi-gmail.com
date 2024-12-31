@@ -31,16 +31,16 @@ const SuggestedVideos = () => {
 
   return (
         <>
-            <div className='w-fit  grid grid-cols-1 xs:scale-75 xs:-translate-y-[500px]  '>
+            <div className='w-fit h-fit  mt-2  grid grid-cols-1 justify-center items-start xs:scale-75 xs:-translate-y-[500px]  '>
              
                 {
                   SuggestedVideos.length > 0 ? (
                     SuggestedVideos.map ((each ) => (
-                          <div key={each._id} className=' flex gap-4 w-full mt-5'>
-                                <div className=''>
-                                    <NavLink to={`/video/${each._id}`}> <img src={each.imageIcon} className='h-32 rounded-lg max-w-96  ' alt="" /></NavLink>
+                          <div key={each._id} className=' flex w-full mt-5 '>
+                                <div className='h-[100%]'>
+                                    <NavLink to={`/video/${each._id}`}> <img src={each.imageIcon} className='max-w-44 h-32  rounded-lg' alt="" /></NavLink>
                                 </div>
-                                <div className='ml-5'>
+                                <div className='ml-5 mt-2 max-w-full'>
                                   <p>{each.description}</p> 
                                   <p className='font-light'>{each.owner}</p>
                                   <span>{each.views}</span>

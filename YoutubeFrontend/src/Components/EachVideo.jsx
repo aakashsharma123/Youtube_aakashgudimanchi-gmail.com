@@ -5,8 +5,7 @@ import { CiBellOn } from "react-icons/ci";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import { MdDownload } from "react-icons/md";
-import Comments from './Comments'; // Assuming this component exists
-// Removed unused axios import
+import Comments from './Comments';
 
 const EachVideo = () => {
     const { id } = useParams();
@@ -14,7 +13,7 @@ const EachVideo = () => {
     const [filteredData, setFilteredData] = useState(null);
     const [Token, setToken] = useState(localStorage.getItem("token"));
     const [Email, setEmail] = useState(localStorage.getItem('email'));
-    
+
     // Function to fetch video data
     const eachVideoFetch = async () => {
         try {
@@ -25,11 +24,10 @@ const EachVideo = () => {
                     'Authorization': Token,
                 }
             });
-
             if (response.ok) {
                 const result = await response.json();
                 setYoutubeData(result);
-                console.log("Fetched video data: ", result);
+                
             } else {
                 console.log("Failed to fetch video data: ", response.statusText);
             }
@@ -37,12 +35,10 @@ const EachVideo = () => {
             console.log('something went wrong', err);
         }
     };
-
     // Fetch video data on component mount
     useEffect(() => {
         eachVideoFetch();
     }, []);
-
     // Filter the video data based on the id
     useEffect(() => {
         const filterDetails = youtubeData.filter(each => each._id === id);
@@ -50,16 +46,20 @@ const EachVideo = () => {
         console.log("Filtered video data: ", filterDetails[0]);
     }, [youtubeData, id]);
 
+    if (!filteredData) {
+        return <h1>loading.....</h1>
+    }
+
     return (
         <>
-            <div className='m-4 w-[100%] xs:h-screen xs:scale-x-50 xs:scale-50 xs:-translate-x-14 xs:-translate-y-40'>
+            <div className='m-4 max-w-[100%] xs:max-w-full xs:grid xs:grid-cols-1'>
                 <div className='ml-4 mt-4 xs:w-[100%]'>
                     <iframe
-                        className='rounded-xl'
+                        className='rounded-xl xs:max-w-full xs:aspect-auto'
                         src={filteredData.video_url}
                         allowFullScreen
                         height={400}
-                        width={800}
+                        width={920}
                     />
                 </div>
                 <p className='px-5 text-2xl'>{filteredData.description}</p>
@@ -94,8 +94,8 @@ const EachVideo = () => {
 
                 <hr className='ml-4' />
 
-                <div className="container">
-                    <div className="first-container bg-[#292929] border-none rounded-lg p-5 mt-2 ml-2">
+                <div className="container xs:border-2 xs:block">
+                    <div className="first-container bg-[#292929] border-none rounded-lg p-5 mt-2 ml-2 xs:block ">
                         <span className='text-xl'>{filteredData.views}</span>
                         <span className='text-xl ml-2'>{filteredData.likes}</span>
                         <p>
@@ -103,10 +103,10 @@ const EachVideo = () => {
                         </p>
                     </div>
                     {Token && (
-                        <div className="secound-container h-96 bg-[#292929] border-none rounded-lg m-7">
-                            
-                            <div className='comments'>
-                                    <Comments />
+                        <div className="secound-container h-96  bg-[#292929] border-none rounded-lg m-7  xs:block">
+
+                            <div className='comments h-fit xs:block'>
+                                <Comments />
                             </div>
                         </div>
                     )}
@@ -117,8 +117,8 @@ const EachVideo = () => {
                                 <p className='mx-auto text-2xl'>Please <span className='text-green-500 underline'>login</span> in order to add comments</p>
                             </div>
                             <div className='comments'>
-                                <div>
-                                    
+                                <div  className='h-fit' >
+                                         
                                 </div>
                             </div>
                         </div>

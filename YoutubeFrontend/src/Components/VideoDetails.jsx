@@ -9,8 +9,8 @@ const VideoDetails = ({details}) => {
     
   return (
    <>
-      <div className='videoDetailsContainer mt-3 cursor-pointer flex flex-col '>
-           <NavLink to={`/video/${details._id}`}> <img className='image-container w-full rounded-lg  ' src={details.imageIcon} alt="" /></NavLink>
+      <div key={details._id} className='videoDetailsContainer mt-3  cursor-pointer flex flex-col  xs:border-2 '>
+           <NavLink to={`/video/${details._id}`}> <img className='image-container w-full rounded-lg xs:aspect-video ' src={details.imageIcon} alt="" /></NavLink>
             <div className='text-container flex gap-2'>
             <IoPersonCircleOutline className='personcircle size-8'/>
             <p className='text-description'>{details.description}</p>

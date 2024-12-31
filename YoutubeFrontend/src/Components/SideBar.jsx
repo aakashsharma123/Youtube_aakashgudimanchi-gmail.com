@@ -216,7 +216,7 @@ const SideBar = () => {
             icon: <IoMdHome />
         }, */}
             {toggleSideBar && (
-                <div className="main-container  grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px]">
+                <div className="main-container  grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px] xs:hidden ">
                 <div className="all-side-bar-items w-full ">
                     <div onClick={() => navigate('/')} className='item flex py-3 items-center space-x-3 font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100'>
                         <span><IoMdHome /></span>
@@ -341,4 +341,3 @@ const SideBar = () => {
 }
 
 export default SideBar
-

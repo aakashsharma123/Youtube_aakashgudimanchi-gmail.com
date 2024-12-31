@@ -47,10 +47,10 @@ const FilterCategroy = (props) => {
     }
     return (
         <>
-          <div className='filterbuttonContainer flex justify-around  xs:flex xs:justify-start xs:scale-50  xs:-translate-x-56'>       
+          <div className='filterbuttonContainer flex justify-around xs:border-2  xs:-translate-x-36 xs:scale-50'>       
           {
-                FilterButtons.map((cat) => (
-                     <button onClick={(e) => handlefilterButtons(e)} className='filterbutton bg-[#292929] py-1  px-5 hover:bg-[#212121] rounded-xl text-white '>{cat}</button>
+                FilterButtons.map((cat , index) => (
+                     <button key={index} onClick={(e) => handlefilterButtons(e)} className='filterbutton bg-[#292929] py-1  px-5 hover:bg-[#212121]  xs:border-2  rounded-xl xs:w-[100px] text-white '>{cat}</button>
                 ))
             }
           </div>

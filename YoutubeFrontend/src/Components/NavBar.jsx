@@ -41,7 +41,7 @@ const NavBar = () => {
                         {/* first div is for left part */}
 
                         <div className="left-part flex items-center  space-x-3 ">
-                              <GiHamburgerMenu onClick={() => setToggleSidebar(!toggleSideBar)} className='text-xl xs:hidden' />
+                              <GiHamburgerMenu onClick={() => setToggleSidebar(!toggleSideBar)} className='text-xl xs:hidden ' />
                               <img onClick={() => setToggleButton(!toggleButton)} src="https://cdn-icons-png.flaticon.com/512/725/725300.png" className='w-8 rounded-lg  ' />
                               <h1 onClick={() => navigate('/')} className='font-bold text-2xl xs:hidden'>Youtube</h1>
                         </div>
@@ -64,7 +64,7 @@ const NavBar = () => {
                         
 
                         {Token && (
-                              <div onClick={() => setToggleButton(!toggleButton)} className=''  >
+                              <div onClick={() => setToggleButton(!toggleButton)} className='xs:border-2 border-white xs:mr-5 '  >
                                     <div className='toggleIconContainer'  >
                                           <span className='flex  hover:bg-[#212121] items-center px-4 text-xl text-red-600 bg-white font-extrabold py-1 rounded-full  '>{tokenHolder.charAt(0).toUpperCase()}</span>
 
