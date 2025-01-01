@@ -12,6 +12,9 @@ import Login from './Components/Login.jsx'
 import React from 'react'
 import ViewProfile from './Components/ViewProfile.jsx'
 import VideoLayout from './Components/videoLayout.jsx'
+import UploadVideo from './Components/UploadVideo.jsx'
+import CreateChannel from './Components/CreateChannel.jsx'
+import MyChannel from './Components/MyChannel.jsx'
 
 const router = createBrowserRouter ([
   {
@@ -33,7 +36,13 @@ const router = createBrowserRouter ([
       {
         path : '/video/:id',
         element : <VideoLayout/>   
-      }
+      },
+      
+      {
+        path : '/upload',
+        element : <UploadVideo/>
+      },
+     
     ]
   },
 
@@ -51,10 +60,18 @@ const router = createBrowserRouter ([
   {
     path : "/viewProfile",
     element : <ViewProfile />
+  },
+
+  {
+    path : '/createChannel',
+    element : <CreateChannel />
+  },
+
+  {
+    path : "/mychannel" , 
+    element : <MyChannel />
   }
 
- 
-  
 ])
 
 

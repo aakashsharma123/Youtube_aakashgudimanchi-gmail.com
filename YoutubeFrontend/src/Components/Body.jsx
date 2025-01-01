@@ -6,7 +6,7 @@ import axios from 'axios';
 import FilterCategroy from './FilterButtons.jsx';
 import { useOutletContext } from 'react-router-dom';
 import { successMessage } from '../ErrorHandle/HandleResponse.js';
-// import '../Styles/Body.css'
+import '../Styles/Body.css'
 
 
 const Body = () => {
@@ -60,29 +60,31 @@ const Body = () => {
   return (
     <>
         {Token && (
-                    <div className="main flex w-full max-h-full xs:border-2 xs:border-yellow-700 xs:max-w-full ">
+              <div className='mainContainer flex w-full max-h-full xs:h-screen'>
+                  <div className="main flex w-full max-h-full ">
                     <SideBar />
-                {/* <div className="flex flex-col"> */}
-                  <div className=" flex-col space-x-9 justify-center py-4 w-full ">
+             
+                  <div className=" flex-col space-x-9 justify-center py-4 w-full   ">
                     <FilterCategroy setData={setFilterData} data={filterData} />
-                  {/* </div> */}
-                  <div className=" videocontainer grid grid-cols-3 w-fit h-[700px] overflow-y-auto gap-5 xs:w-full xs:aspect-auto xs:grid xs:grid-cols-1 xs:-translate-x-9 ">
+       
+                  <div className=" videocontainer grid grid-cols-3 w-fit h-[700px] overflow-y-auto gap-5 " >
                     {filterData.map((each) => (
                       <VideoDetails key={each.id} details={each} />
                     ))}
                   </div>
                 </div>
               </div>
+              </div>
         )}
 
         {!Token && (
                   <div className=" main flex w-full max-h-full">
                   <SideBar />
-              <div className="flex flex-col xs:flex ">
-                <div className=" flex-col space-x-9 justify-center py-4 w-[100%] xs:-space-x-40">
+              <div className="flex flex-col  ">
+                <div className=" flex-col space-x-9 justify-center py-4 w-[100%] ">
                   <FilterCategroy setData={setFilterData} data={filterData} />
                 </div>
-                <div className="videocontainer grid grid-cols-3 w-fit h-[700px] overflow-y-auto gap-5 xs:grid xs:grid-cols-1 xs:h-screen xs:w-96 xs:overflow-y-auto">
+                <div className="videocontainer grid grid-cols-3 w-fit h-[700px] overflow-y-auto gap-5 ">
                   {filterData.map((each) => (
                     <VideoDetails key={each.id} details={each} />
                   ))}

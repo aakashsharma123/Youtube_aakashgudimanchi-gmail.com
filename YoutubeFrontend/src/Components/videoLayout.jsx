@@ -8,7 +8,7 @@ const VideoLayout = () => {
 
     <div className='flex  '>
             <SideBar /> 
-              <div className='overflow-y-auto h-[670px] flex xs:flex-col  '>
+              <div className='overflow-y-auto h-[670px] flex xs:flex-col xs:h-[100%]  '>
                   <EachVideo/>
                   <SuggestedVideos />
               </div>

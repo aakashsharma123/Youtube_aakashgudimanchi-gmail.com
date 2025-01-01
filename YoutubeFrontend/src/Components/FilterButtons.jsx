@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FilterButtons } from '../utlies/FilterButtons.jsx'
 import axios from 'axios';
-import { data } from 'react-router-dom';
-// import '../Styles/FilterButtons.css'
+
+import '../Styles/FilterButtons.css'
 
 const FilterCategroy = (props) => {
     const [youtubeDetails, setYoutubeDetails] = useState([]);
@@ -47,7 +47,7 @@ const FilterCategroy = (props) => {
     }
     return (
         <>
-          <div className='filterbuttonContainer flex justify-around xs:border-2  xs:-translate-x-36 xs:scale-50'>       
+          <div className='filterbuttonContainer flex justify-around flex-1 '>       
           {
                 FilterButtons.map((cat , index) => (
                      <button key={index} onClick={(e) => handlefilterButtons(e)} className='filterbutton bg-[#292929] py-1  px-5 hover:bg-[#212121]  xs:border-2  rounded-xl xs:w-[100px] text-white '>{cat}</button>

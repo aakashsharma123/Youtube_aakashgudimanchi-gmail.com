@@ -8,7 +8,30 @@
         border: 2px solid wheat;
         margin-right: 1rem;
         justify-content: center;
-        transform: scaleX(1.2);
+        justify-items: center;
+        align-items: center;
+        position: relative;
+        bottom: 50px;
+        
+    }
+
+    .mainContainer {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        /* grid-template-rows: auto; */
+        justify-content: center;
+        margin-top: 1rem;
+      
+    }
+
+    .main {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        /* grid-template-rows: auto; */
+        justify-content: center;
+        margin-top: 1rem;
+        aspect-ratio: 1/1;
+
     }
 
    

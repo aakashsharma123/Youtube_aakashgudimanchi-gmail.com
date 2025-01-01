@@ -8,8 +8,8 @@ import dotenv from 'dotenv'
 dotenv.config();
 import router from '../YoutubeBackend/Routes/AuthUser.js'
 import commentRoutes from './Routes/Commetns.js';
-
-
+import ChannelRoutes from './Routes/Channel.js';
+import VideoRoutes from './Routes/Videos.js';
 
 app.use(express.json());
 app.use(express.urlencoded ({extended : true}))
@@ -18,6 +18,8 @@ app.use (cros())
 app.use ('/auth' , router);
 YoutubeDataRoutes(app)
 commentRoutes(app)
+ChannelRoutes(app)
+VideoRoutes(app);
 
 const port = process.env.port
 

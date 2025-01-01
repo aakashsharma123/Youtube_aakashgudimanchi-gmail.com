@@ -31,7 +31,7 @@ const SuggestedVideos = () => {
 
   return (
         <>
-            <div className='w-fit h-fit  mt-2  grid grid-cols-1 justify-center items-start xs:scale-75 xs:-translate-y-[500px]  '>
+            <div className='w-fit h-fit  mt-2  grid grid-cols-1 justify-center items-start  xs:-translate-y-[500px] xs:hidden '>
              
                 {
                   SuggestedVideos.length > 0 ? (

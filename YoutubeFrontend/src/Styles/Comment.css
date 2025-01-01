@@ -1,0 +1,139 @@
+@media (min-width : 375px) and (max-width: 575px) {
+.comments-container {
+    width: 30%;
+    margin: 1rem;
+    display: flex;
+    background-color: #292929;
+    border: 2px solid #4B5563;
+}
+
+.comments-form {
+    width: 50%;
+    max-width: 100%;
+    display: flex;
+    /* flex-wrap: wrap; */
+    /* transform: scale(1); */
+    background-color: #292929;
+
+    /* transform: translateX(-3.5rem); */
+}
+
+.comments-input-container {
+    display: flex;
+    width: 20%;
+    background-color: #292929;
+
+}
+
+.comments-input {
+    margin-top: 0.5rem;
+    /* display: block; */
+    width: 20px;
+    outline: none;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    border: 1px solid #4B5563;
+    padding-left: 7rem;
+    display: flex;
+    justify-content: start;
+    flex: auto;
+    /* background-color: #292929; */
+}
+
+/* .comments-button {
+    margin-left: 1.25rem;
+    border-radius: 0.5rem;
+    background-color: #4B5563;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s;
+    /* width: 20px; */
+} */
+
+.comments-button:hover {
+    background-color: #10B981;
+}
+
+.comments-list {
+    padding: 1.25rem;
+}
+
+.comment-item {
+    border: 2px solid #4B5563;
+    border-radius: 0.5rem;
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.comment-edit-container {
+    width: 100%;
+    display: flex;
+    padding: 0.75rem;
+}
+
+.comment-edit-form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comment-edit-input {
+    margin-top: 0.5rem;
+    width: 90%;
+    outline: none;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    border: 1px solid #4B5563;
+    width: 170px;
+}
+
+.comment-edit-button {
+    margin-left: 1.25rem;
+    border-radius: 0.5rem;
+    background-color: #EF4444;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.comment-edit-button:hover {
+    background-color: #10B981;
+}
+
+.comment-text {
+    display: inline-block;
+}
+
+.comment-message {
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.comment-user {
+    font-size: 0.875rem;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.comment-action-icon {
+    font-size: 2rem;
+    transition: color 0.3s;
+}
+
+.comment-action-icon:hover {
+    color: #EF4444;
+}
+

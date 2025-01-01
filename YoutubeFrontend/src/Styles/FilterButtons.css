@@ -1,11 +1,13 @@
 @media (min-width : 375px) and (max-width: 575px) {
     .filterbuttonContainer {
-        margin: 0%;
-        padding: 0%;
-        transform: scale(0.4);
+        border: 2px solid white;
+        /* margin: 0%;
+        padding: 0%; */
+        transform: scale(0.5);
         display: flex;
         justify-content: space-around;
         align-items: center;
-        
+        position: relative;
+        bottom: 50px;
     }
 }

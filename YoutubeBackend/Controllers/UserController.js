@@ -43,12 +43,14 @@ export async function login (req , res) {
         const accessToken = Jwt.sign ({email : user.email , password : user.password} , "aakash@2002" , {expiresIn : '7d'})
 
        if (accessToken) {
+
         res.status(200).json ({
             message : "login successfull ",
              success : true,
             token : accessToken,
             name : user.name,
-            email : user.email
+            email : user.email,
+            id : user._id
             })
        }
 

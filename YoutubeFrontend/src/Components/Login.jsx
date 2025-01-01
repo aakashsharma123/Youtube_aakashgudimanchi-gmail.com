@@ -34,12 +34,13 @@ const Login = () => {
             })
 
             const result = await response.json();
-            const {message , success , token , name , email} = result
+            const {message , success , token , name , email, id} = result
 
             if (token) {
                 localStorage.setItem ("token" , token)
                 localStorage.setItem ("name" , name)
                 localStorage.setItem ("email" , email)
+                localStorage.setItem("id" , id)
             }
 
             if (localStorage.getItem ("token")) {

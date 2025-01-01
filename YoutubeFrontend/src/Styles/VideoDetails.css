@@ -1,23 +1,47 @@
 @media (min-width : 375px) and (max-width: 575px) {
     .videoDetailsContainer {
-        width: 100%;
+        width: 50%;
         margin-top: 0%;
-        display: grid;
-        grid-template-columns:repeat(1 , 1fr);
-        grid-template-rows: 1fr;
-        border: 2px solid black;
-        
+        display: flex;
+        flex-direction: column;
+        flex: 1, 1, auto;
+        justify-content: center;
+        text-align: center;
+        /* flex-wrap: wrap; */
+        justify-items: center;
+        margin-right: 20px;
+        /* position: relative; */
+    }
+
+    .text-container {
+        flex: 1, 1, auto;
+        font-size: x-small;
+        text-align: start;
+        margin-right: 150px;
     }
 
     .image-container {
-        width:100%;
-        max-height: 100%;
+        flex: 1, 1, auto;
+        width: 80%;
+        height: 50%;
+        object-fit: cover;
     }
 
     .personcircle {
-        
+        flex: 1, 1, auto;
+        font-size: small;
+        text-align: start;
     }
+
     .text-description {
-        
+        display: 100%;
+        padding: 10px;
+        flex-grow: 1;
+        /* flex-wrap: wrap; */
+        /* flex: 1 ,1 ,auto; */
+        /* border: 2px solid black; */
+        font-size: smaller;
+        text-align: center;
+        margin: 0% auto;
     }
 }
