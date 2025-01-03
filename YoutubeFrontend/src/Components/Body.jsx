@@ -55,7 +55,7 @@ const Body = () => {
     <>
       {Token && (
         <div className='mainContainer flex w-full max-h-full xs:h-screen'>
-          <div className="sideBar-container main flex w-full max-h-full o">
+          <div className="sideBar-container main flex w-full max-h-full ">
             <SideBar />
             <div className="flex-col space-x-9 justify-center py-4 w-full">
               <FilterCategory setData={setFilterData} data={filterData} />

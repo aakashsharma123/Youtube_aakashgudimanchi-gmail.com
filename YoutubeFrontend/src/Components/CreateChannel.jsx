@@ -22,36 +22,7 @@ const CreateChannel = () => {
 
 
     const navigate = useNavigate();
-
-    const handlechannel =async (e) => {
-        e.preventDefault();
-
-        try {
-            const {channelName , channelLogo , channelBanner , channelDescription} = channelData
-            const response = await axios.post('http://localhost:3000/channel' , {channelName , channelLogo , channelBanner , channelDescription} ,
-                 {
-                    headers : {
-                        "Authorization" : Token
-                    }
-                 } 
-             );
-
-             if (response.status === 201) {
-                
-                     localStorage.setItem("channelname" , JSON.stringify(channelData.channelName) );
-                    
-                     successMessage("channel created successfully")
-                        navigate('/viewProfile')
-             }
-
-        }catch(err) {
-             ErrorMessage("only one user can create one channel");
-             console.log(err);
-             
-        }
-
-    }
-
+    
     const handletext = (e) => {
         const {name , value} = e.target;
 
@@ -63,11 +34,40 @@ const CreateChannel = () => {
     }
 
     // console.log(channelData);
+
+    const channelname  = channelData.channelName
     
+    
+        const handlechannel =async (e) => {
+            e.preventDefault();
+    
+            try {
+                const {channelName , channelLogo , channelBanner , channelDescription} = channelData
+                const response = await axios.post('http://localhost:3000/channel' , {channelName , channelLogo , channelBanner , channelDescription} ,
+                     {
+                        headers : {
+                            "Authorization" : Token
+                        }
+                     } 
+                 )
+                    
+                 if (response.status === 201) {
+                        localStorage.setItem("channelname" , channelname)
+                         successMessage("channel created successfully")
+                            navigate('/viewProfile')
+                 }
+    
+            }catch(err) {
+                 ErrorMessage("only one user can create one channel");
+                 console.log(err);
+                 
+            }
+    
+        }
     
     return (
-       
-            <div className="create-upload-container w-full h-screen ">
+        
+        <div className="create-upload-container w-full h-screen ">
                 <div className="create-now h-full w-full grid grid-cols-1 place-items-center ">
 
                     <form onSubmit={handlechannel} className='h-full w-full'>
@@ -79,7 +79,7 @@ const CreateChannel = () => {
 
                         <div className='flex flex-col gap-5 p-5 justify-start '>
                             <label htmlFor="channelName">Channel Name</label>
-                            <input onChange={(e) => handletext(e)} type="text" id='channelName' className='px-5 py-4 bg-[#292929] border border-[#292929] w-full' placeholder='Title of the video' name='channelName' />
+                            <input onChange={(e) => handletext(e)} type="text" id='channelName' className='px-5 py-4 bg-[#292929] border border-[#292929] w-full' placeholder='channelName' name='channelName' />
                             <label htmlFor="channelLogo">Channel Logo</label>
                             <input onChange={(e) => handletext(e)} type="text" id='channelLogo' className='px-5 py-4 bg-[#292929] border border-[#292929] w-full' placeholder='Channel Logo'  name='channelLogo' />
                             <label htmlFor="">Channel Banner</label>

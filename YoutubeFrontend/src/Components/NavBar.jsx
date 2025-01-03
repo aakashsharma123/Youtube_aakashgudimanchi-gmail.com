@@ -27,11 +27,11 @@ const NavBar = () => {
       const [Token, setToken] = useState(localStorage.getItem("token") || '');
       const [tokenHolder, setTokenHolder] = useState(localStorage.getItem("name") || '');
       const [email, setEmail] = useState(localStorage.getItem("email") || '');
+      const [channelname , setChannelName] = useState(localStorage.getItem("channel") || '');
       const [textContent, setTextContent] = useState('');
       const [toggleButton, setToggleButton] = useState(false);
       const [toggleSideBar, setToggleSidebar] = useState(false);
       const navigate = useNavigate();
-      const [channelname , setChannelName] = useState(localStorage.getItem("channel") || '');
       
 
       const handleLogout = () => {
@@ -39,7 +39,7 @@ const NavBar = () => {
             localStorage.removeItem("name");
             localStorage.removeItem('email');
             localStorage.removeItem('id');
-            localStorage.removeItem('channel');
+            localStorage.removeItem('channelname');
             setToken(null);
             setTokenHolder(null);
             setEmail(null);
@@ -118,11 +118,13 @@ const NavBar = () => {
                                                 </div>
                                                 {/* channelName */}
                                                 
-                                                      <div className='flex items-center xs:w-[220px]'>
-                                                      <div className='flex items-center gap-4 border-b-2 w-full xs:w-[220px]' >
-                                                            <span className='text-xl xs:text-sm '><FaVideo /></span>
-                                                            <span onClick={() => navigate('/upload')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>Upload Video</span>
-                                                      </div>
+                                                <div className='flex items-center xs:w-[220px]'>
+                                                      {!channelname && (
+                                                             <div className='flex items-center gap-4 border-b-2 w-full xs:w-[220px]' >
+                                                             <span className='text-xl xs:text-sm '><FaVideo /></span>
+                                                             <span onClick={() => navigate('/upload')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>Upload Video</span>
+                                                             </div>
+                                                      )}
                                                 </div>
                                                 
 

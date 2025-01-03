@@ -1,3 +1,4 @@
+import {Channel} from '../Models/Channel.js';
 import {videoModel} from '../Models/Videos.js';
 import {youtubeDataModel} from '../Models/Youtubedatamodel.js';
 
@@ -34,12 +35,15 @@ export const PostVideo = async (req, res) => {
 
         const uploadVideo = await video.save();
 
-        if (uploadVideo) {
+        const channel = await Channel.findOne({user_id : _id});
+        
+
+        if (!channel ) {
+            return res.status(404).json({message : "something is wrong"})
+        }else {
             await youtubeDataModel.insertMany ([video])
 
             return res.status(201).json({message : "video uploaded" , uploadVideo});
-        }else {
-            return res.status(404).json({message : "something is wrong"})
         }
     } catch (err) {
         console.error("Error occurred while saving video: ", err);
@@ -49,33 +53,39 @@ export const PostVideo = async (req, res) => {
 }
 
 export const editVideo = async (req, res) => {
-    const {_id , name} = req.user;
+    // const {_id , name} = req.user;
+    
+    const {id} = req.params
 
     const { description, video_url, imageIcon, category } = req.body;
+
+    const video = await videoModel.findById({_id : id})
 
     try {
         
 
         if (video) {
-           const updateVideo =  await videoModel.findByIdAndUpdate (
-                {user_id : _id} , 
+            await videoModel.findByIdAndUpdate (
+                {_id : id} , 
 
-                {$set : {imageIcon , video_url , description , owner , genre }},
+                {$set : {imageIcon , video_url , description , genre : category }},
 
-                {new : true}
+                {new : true , upsert : true}
             )
 
             await youtubeDataModel.findByIdAndUpdate (
-                {user_id : _id},
-                {$set : { description , video_url , imageIcon , category}}
+                {_id : id},
+                {$set : { description , video_url , imageIcon , genre : category}}
             )
 
 
-            return res.status(201).json({message : "video uploaded" , updateVideo});
+            return res.status(201).json({message : "video uploaded"});
         }
 
     }
     catch (err) {
+        console.log(err);
+        
         return res.status (500).json({message : "internal server problem"});
     }
 
@@ -83,14 +93,14 @@ export const editVideo = async (req, res) => {
 
 export const deleteVideo = async (req, res) => {
     
-    const {_id} = req.user
+    const {id} = req.params
 
     try {
         await videoModel.deleteOne ({
-            user_id : _id
+            _id : id
         })
         await youtubeDataModel.deleteOne ({
-            user_id : _id
+            _id : id
         })
 
         return res.status(200).json({message : "deleted successfully"})

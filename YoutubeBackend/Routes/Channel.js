@@ -1,4 +1,4 @@
-import { getChannel, PostChannel } from "../Controllers/Channel.js"
+import { getChannel, PostChannel  } from "../Controllers/Channel.js"
 import { Auth } from "../Middlewares/Auth.js"
 
 const ChannelRoutes = (app) => {

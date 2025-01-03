@@ -33,6 +33,5 @@ const ChannelSchema = new mongoose.Schema ({
     
 }, {timestamps : true});
 
-const Channel = mongoose.model ('channel' , ChannelSchema);
+export const Channel = mongoose.model ('channel' , ChannelSchema);
 
-export default Channel

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SideBar from './SideBar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ViewProfile = () => {
 
@@ -15,6 +16,8 @@ const ViewProfile = () => {
   const [channelError, setChannelError] = useState(null);
 
   const [reload ,setreload] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     
@@ -76,8 +79,8 @@ const ViewProfile = () => {
             <p className='text-2xl'>{name}</p>
             <p className='text-2xl'>{email}</p>
             <div className='mt-5'>
-              <button className='border-transparent bg-[#292929] px-5 py-2 rounded-xl hover:bg-gray-800 transition-all duration-100 '>Customize Channel</button>
-              <button className='border-transparent bg-[#292929] px-5 py-2 rounded-xl hover:bg-gray-800 transition-all duration-100 ml-5 '>Manage Videos</button>
+              <button className='border-transparent bg-[#292929] px-5 py-2 rounded-xl hover:bg-gray-800 transition-all duration-100 ' onClick={() => navigate('/mychannel')}>Customize Channel</button>
+              <button className='border-transparent bg-[#292929] px-5 py-2 rounded-xl hover:bg-gray-800 transition-all duration-100 ml-5 ' onClick={() => navigate('/mychannel')} >Manage Videos</button>
             </div>
           </div>
         </div>
@@ -88,7 +91,7 @@ const ViewProfile = () => {
           <section className='border-2 mt-2 border-transparent shadow-xl  rounded-lg p-10 w-full'>
               <section className='border shadow-2xl shadow-gray-800 bg-[#292929] rounded-2xl p-2'>
                   <img src={channel.channelLogo}  width={200} height={200} className='rounded mix-blend-color-burn' />
-                  <p className='mt-2 '>{channel.channelName}</p>
+                  <p className='mt-2 ml-5 '><span className='text-3xl font-bold text-gray-600'>Channel Name</span> : <span className='text-2xl font-bold'>{channel.channelName}</span></p>
               </section>
           </section>
         )}
