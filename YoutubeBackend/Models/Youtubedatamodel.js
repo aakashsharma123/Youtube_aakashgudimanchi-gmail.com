@@ -1,5 +1,5 @@
 import mongoose, { Mongoose } from "mongoose";
-import 
+
 
 const youtubeDataSchema = new mongoose.Schema({
     imageIcon: { type: String, required: true },
@@ -10,12 +10,14 @@ const youtubeDataSchema = new mongoose.Schema({
     time: { type: String, required: true },
     genre: { type: String, required: true },
     subscription: { type: String, required: true },
-    youtubeUpload : [
+    video_data : [
+
         {
-            type : Mongoose.Schema.Types.ObjectId,
-            ref : 'Video',
-        }
-    ]
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'videoModel'
+        },        
+    ],
+    user_id: { type: mongoose.Schema.Types.ObjectId , default: null }
 })
 
 export const youtubeDataModel = mongoose.model("youtubeData", youtubeDataSchema);

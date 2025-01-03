@@ -19,6 +19,8 @@ import { SlCamrecorder } from "react-icons/sl";
 import { ImYoutube2 } from "react-icons/im";
 import { FaArrowRight } from "react-icons/fa";
 import '../Styles/NavBar.css'
+import { successMessage } from '../ErrorHandle/HandleResponse.js';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const NavBar = () => {
@@ -42,12 +44,14 @@ const NavBar = () => {
             setTokenHolder(null);
             setEmail(null);
             setChannelName(null);
+            successMessage("logout SuccessFull")
       }
 
 
       return (
             <>
-                  <div className="container  flex justify-between items-center px-4 max-w-full ">
+                  {/* flex justify-between items-center */}
+                  <div className="container   px-4 flex justify-between items-center  max-w-full    "> 
                         {/* first div is for left part */}
 
                         <div className="left-part flex items-center  space-x-3  ">
@@ -112,13 +116,15 @@ const NavBar = () => {
                                                             <span onClick={() => navigate('/createChannel')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>Create Channel</span>
                                                       </div>
                                                 </div>
-
-                                                <div className='flex items-center xs:w-[220px]'>
+                                                {/* channelName */}
+                                                
+                                                      <div className='flex items-center xs:w-[220px]'>
                                                       <div className='flex items-center gap-4 border-b-2 w-full xs:w-[220px]' >
                                                             <span className='text-xl xs:text-sm '><FaVideo /></span>
                                                             <span onClick={() => navigate('/upload')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>Upload Video</span>
                                                       </div>
                                                 </div>
+                                                
 
                                                 <div className='flex items-center gap-4 border-b-2 xs:w-[220px] '>
                                                       <FaGoogle className='text-xl xs:text-sm ' />
@@ -161,10 +167,10 @@ const NavBar = () => {
                               </div>
                         )}
                   </div>
-
                   <div className='flex justify-center items-center '>
                         <Outlet context={{ textContent, toggleSideBar }} />
                   </div>
+                                    <ToastContainer/>
             </>
       );
 }

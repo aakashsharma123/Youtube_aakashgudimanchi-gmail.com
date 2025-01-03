@@ -29,7 +29,7 @@ import { CiFlag1 } from "react-icons/ci";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { RiFeedbackLine } from "react-icons/ri";
 import FilterCategroy from './FilterButtons';
-// import '../Styles/SideBar.css';
+import '../Styles/SideBar.css';
 import { useNavigate, useOutlet, useOutletContext } from 'react-router-dom';
 import { TiSocialYoutubeCircular } from "react-icons/ti";
 import { FaHistory } from 'react-icons/fa';
@@ -37,7 +37,7 @@ import { FaHistory } from 'react-icons/fa';
 const SideBar = () => {
 
     const navigate = useNavigate()
-    // const [toggleButton , setToggleButton] = useState (false);
+    const [toggleButton , setToggleButton] = useState (false);
     const {toggleSideBar} = useOutletContext();
 
     console.log(toggleSideBar);
@@ -215,8 +215,9 @@ const SideBar = () => {
             text: "Home",
             icon: <IoMdHome />
         }, */}
+        {/* grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px] */}
             {toggleSideBar && (
-                <div className="main-container  grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px] xs:hidden ">
+                <div className="main-container overflow-y-auto h-[700px]   xs:hidden ">
                 <div className="all-side-bar-items w-full ">
                     <div onClick={() => navigate('/')} className='item flex py-3 items-center space-x-3 font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100'>
                         <span><IoMdHome /></span>

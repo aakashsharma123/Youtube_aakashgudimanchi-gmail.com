@@ -38,7 +38,7 @@ const EachVideo = () => {
     // Fetch video data on component mount
     useEffect(() => {
         eachVideoFetch();
-    }, []);
+    }, [youtubeData]);
 
     // Filter the video data based on the id
     useEffect(() => {

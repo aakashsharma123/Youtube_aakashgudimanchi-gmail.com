@@ -42,6 +42,10 @@ const router = createBrowserRouter ([
         path : '/upload',
         element : <UploadVideo/>
       },
+      {
+        path : "/mychannel" , 
+        element : <MyChannel />
+      }
      
     ]
   },
@@ -67,11 +71,7 @@ const router = createBrowserRouter ([
     element : <CreateChannel />
   },
 
-  {
-    path : "/mychannel" , 
-    element : <MyChannel />
-  }
-
+  
 ])
 
 

@@ -44,6 +44,7 @@ const Login = () => {
             }
 
             if (localStorage.getItem ("token")) {
+                successMessage ("Login Successfull")
                 setTimeout(() => {
                     navigate('/')
                 },  [2000]);
@@ -98,7 +99,7 @@ const Login = () => {
                                 className='py-4 outline-none font-bold text-black rounded-md' 
                                 placeholder='Enter Email' 
                                 value={LoginData.email} 
-                            />
+                                />
                             <input 
                                 onChange={handleData} 
                                 name='password' 
@@ -116,8 +117,8 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
+            <ToastContainer/>
 
-                <ToastContainer/>
             </div>
         </>
     );

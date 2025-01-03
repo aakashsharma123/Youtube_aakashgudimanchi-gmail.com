@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const ChannelSchema = new mongoose.Schema ({
+    
     user_id : {
         type : mongoose.Schema.Types.ObjectId,
         required  :true,
@@ -29,6 +30,7 @@ const ChannelSchema = new mongoose.Schema ({
         type : String,
         required : true
     }
+    
 }, {timestamps : true});
 
 const Channel = mongoose.model ('channel' , ChannelSchema);
