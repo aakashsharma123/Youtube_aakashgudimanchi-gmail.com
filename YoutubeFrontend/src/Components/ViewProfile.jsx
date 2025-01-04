@@ -65,7 +65,7 @@ const ViewProfile = () => {
   return (
     <>
       <SideBar />
-      <div className='container p-8 w-full  h-screen grid grid-cols-1 place-items-center  border-violet-600  '>
+      <div className='container p-8 w-full  h-screen grid grid-cols-1 place-items-center  border-violet-600 xs:scale-50'>
         <div className="whole-container border-b-2 p-10 items-start w-full grid grid-cols-1 place-items-center">
 
           <div className='right-part w-[10rem] h-[8rem] bg-red-500 rounded-full px-16 '> 
@@ -76,9 +76,9 @@ const ViewProfile = () => {
           <div className='ml-10 grid grid-cols-1 place-items-center justify-center '>
             <p className='text-2xl'>{name}</p>
             <p className='text-2xl'>{email}</p>
-            <div className='mt-5'>
+            <div className='mt-5 xs:grid xs:grid-cols-1 xs:place-items-center sm:grid sm:grid-cols-1 sm:place-items-center md:grid md:grid-cols-2 md:place-items-center lg:grid lg:grid-cols-2 lg:place-items-center xl:grid xl:grid-cols-2 xl:place-items-center'> 
               <button className='border-transparent bg-[#292929] px-5 py-2 rounded-xl hover:bg-gray-800 transition-all duration-100 ' onClick={() => navigate('/mychannel')}>Customize Channel</button>
-              <button className='border-transparent bg-[#292929] px-5 py-2 rounded-xl hover:bg-gray-800 transition-all duration-100 ml-5 ' onClick={() => navigate('/mychannel')} >Manage Videos</button>
+              <button className='border-transparent bg-[#292929]  px-5 py-2 rounded-xl hover:bg-gray-800 transition-all duration-100 ml-5 xs:ml-1 ' onClick={() => navigate('/mychannel')} >Manage Videos</button>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ const ViewProfile = () => {
           <section className='border-2 mt-2 border-transparent shadow-xl  rounded-lg p-10 w-full'>
                 <section className='border shadow-2xl shadow-gray-800 bg-[#292929] rounded-2xl p-2'>
                 <img src={channel.channelLogo}  width={200} height={200} className='rounded mix-blend-color-burn' />
-                <p className='mt-2 ml-5 '><span className='text-3xl font-bold text-gray-600'>Channel Name</span> : <span className='text-2xl font-bold'>{channel.channelName}</span></p>
+                <p className='mt-2 ml-5 '><span className='text-3xl font-bold xs:text-sm text-gray-600'>Channel Name</span> : <span className='text-2xl font-bold  xs:text-sm'>{channel.channelName}</span></p>
                 </section>
           </section>
         )}

@@ -68,7 +68,7 @@ const CreateChannel = () => {
     return (
         
         <div className="create-upload-container w-full h-screen ">
-                <div className="create-now h-full w-full grid grid-cols-1 place-items-center ">
+                <div className="create-now h-full w-full grid grid-cols-1 place-items-center xs:scale-50 sm:scale-75 md:scale-100 lg:scale-100 xl:scale-100">
 
                     <form onSubmit={handlechannel} className='h-full w-full'>
 

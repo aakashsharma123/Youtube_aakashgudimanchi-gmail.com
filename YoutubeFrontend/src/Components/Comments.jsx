@@ -11,6 +11,8 @@ const Comments = () => {
     const [messageComment, setmessageComment] = useState('');
     const [editId, setEditId] = useState(null);
     const [editmessage, setEditMessage] = useState('');
+    const [handledelupdate, sethandleDelUpdate] = useState(true);
+    const [currentid , setCurrentId] = useState(localStorage.getItem('id'));
 
     const handlecomment = async (e) => {
         e.preventDefault();
@@ -156,10 +158,12 @@ const Comments = () => {
                                     <p className='font-extrabold text-base xs:text-lg'>{comment.messageComment}</p>
                                     <p className='text-sm'>Posted By <span className='font-extralight text-sm'>{comment.user.name}</span> </p>
                                 </div>
-                                <div className='flex gap-5 mt-2'>
+                                {currentid === comment.user._id && (
+                                <div className={handledelupdate ? "flex justify-start w-full gap-5 mt-2" : "hidden"}>
                                     <MdDelete onClick={() => { handleDeleteButton(comment) }} className='text-2xl xs:text-3xl hover:text-red-500' />
                                     <FaEdit onClick={(e) => setEditId(comment._id)} className='text-2xl xs:text-3xl hover:text-green-500' />
                                 </div>
+                                )}
                             </>
                         )}
                     </article>

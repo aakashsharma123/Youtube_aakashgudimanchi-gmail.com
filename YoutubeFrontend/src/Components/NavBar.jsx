@@ -31,6 +31,7 @@ const NavBar = () => {
       const [textContent, setTextContent] = useState('');
       const [toggleButton, setToggleButton] = useState(false);
       const [toggleSideBar, setToggleSidebar] = useState(false);
+      const [cn , setcname] = useState(localStorage.getItem("channelname") || '');
       const navigate = useNavigate();
       
 
@@ -39,7 +40,7 @@ const NavBar = () => {
             localStorage.removeItem("name");
             localStorage.removeItem('email');
             localStorage.removeItem('id');
-            // localStorage.removeItem('channelname');
+            localStorage.removeItem('channelname');
             setToken(null);
             setTokenHolder(null);
             setEmail(null);
@@ -99,7 +100,11 @@ const NavBar = () => {
                                                       <div className='flex flex-col ml-4 '>
                                                             <span className='text-xl xs:text-sm'>{tokenHolder}</span>
                                                             <span className='text-xl xs:text-sm'>{email}</span>
-                                                            <Link to={'/ViewProfile'}><span className='text-xl xs:text-sm text-blue-600 font-extrabold hover:text-red-600 '>View your Account</span></Link>
+                                                            {cn && (
+                                                                  <>
+                                                                         <Link to={'/ViewProfile'}><span className='text-xl xs:text-sm text-blue-600 font-extrabold hover:text-red-600 '>View your Account</span></Link>
+                                                                  </>
+                                                            )}
                                                       </div>
                                                 </div>
 
