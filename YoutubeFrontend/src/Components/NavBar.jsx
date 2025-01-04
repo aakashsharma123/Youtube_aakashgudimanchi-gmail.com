@@ -19,19 +19,22 @@ import { SlCamrecorder } from "react-icons/sl";
 import { ImYoutube2 } from "react-icons/im";
 import { FaArrowRight } from "react-icons/fa";
 import '../Styles/NavBar.css'
-import { successMessage } from '../ErrorHandle/HandleResponse.js';
+import { ErrorMessage, successMessage } from '../ErrorHandle/HandleResponse.js';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 
 
 const NavBar = () => {
       const [Token, setToken] = useState(localStorage.getItem("token") || '');
       const [tokenHolder, setTokenHolder] = useState(localStorage.getItem("name") || '');
       const [email, setEmail] = useState(localStorage.getItem("email") || '');
-      const [channelname , setChannelName] = useState(localStorage.getItem("channel") || '');
+      // const [channelname , setChannelName] = useState(localStorage.getItem("channel") || '');
       const [textContent, setTextContent] = useState('');
       const [toggleButton, setToggleButton] = useState(false);
       const [toggleSideBar, setToggleSidebar] = useState(false);
-      const [cn , setcname] = useState(localStorage.getItem("channelname") || '');
+      // const [cn , setcname] = useState(localStorage.getItem("channels") || '');
+      const [channels ,  setChannel] = useState(null);
+
       const navigate = useNavigate();
       
 
@@ -44,9 +47,38 @@ const NavBar = () => {
             setToken(null);
             setTokenHolder(null);
             setEmail(null);
-            setChannelName(null);
+            // setChannelName(null);
             successMessage("logout SuccessFull")
+            navigate('/')
       }
+
+      const getchannels = async () => {
+            const url = 'http://localhost:3000/channels'
+
+            try {
+                  const response  = await axios.get (url , {
+                        headers : {
+                              "Authorization" : Token
+                        }
+                  });
+
+                  if (response.statusText === 200) {
+                        setChannel (response.data.unqiuechannel)
+                  }else {
+                        setChannel([]);
+                  }
+            }catch(err) {
+                  ErrorMessage(err)
+            }
+      }
+
+      useEffect(() => {
+            if (Token) {  // Make sure there's a valid token
+                  getchannels();
+            }
+      }, [Token]);  // Only re-fetch channels when the token changes
+      
+
 
 
       return (
@@ -100,20 +132,22 @@ const NavBar = () => {
                                                       <div className='flex flex-col ml-4 '>
                                                             <span className='text-xl xs:text-sm'>{tokenHolder}</span>
                                                             <span className='text-xl xs:text-sm'>{email}</span>
-                                                            {cn && (
-                                                                  <>
-                                                                         <Link to={'/ViewProfile'}><span className='text-xl xs:text-sm text-blue-600 font-extrabold hover:text-red-600 '>View your Account</span></Link>
-                                                                  </>
-                                                            )}
+                                                           
+                                                             {channels  &&  <Link to={'/ViewProfile'}><span className='text-xl xs:text-sm text-blue-600 font-extrabold hover:text-red-600 '>View your Account</span></Link>}           
+                                                          
                                                       </div>
                                                 </div>
 
+                                                            {channels && (
                                                 <div className='flex items-center border-b-2 xs:w-[220px]' >
-                                                      <div className='flex items-center gap-4 border-b-2 xs:w-[220px]'>
-                                                            <span className='text-xl xs:text-sm '><FaArrowRight /></span>
-                                                            <span onClick={() => navigate('/mychannel')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>My Channel</span>
-                                                      </div>
+                                                                  <div className='flex items-center gap-4 border-b-2 xs:w-[220px]'>
+                                                                  <>
+                                                                        <span className='text-xl xs:text-sm '><FaArrowRight /></span>
+                                                                        <span onClick={() => navigate('/mychannel')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>My Channel</span>
+                                                                  </>
+                                                                   </div>
                                                 </div>
+                                                            )}
 
                                                 <div className='flex items-center xs:w-[220px]'>
                                                       <div className='flex items-center gap-4 border-b-2 w-full xs:w-[220px]' >
@@ -124,12 +158,12 @@ const NavBar = () => {
                                                 {/* channelName */}
                                                 
                                                 <div className='flex items-center xs:w-[220px]'>
-                                                      {!channelname && (
+                                                     
                                                              <div className='flex items-center gap-4 border-b-2 w-full xs:w-[220px]' >
                                                              <span className='text-xl xs:text-sm '><FaVideo /></span>
                                                              <span onClick={() => navigate('/upload')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>Upload Video</span>
                                                              </div>
-                                                      )}
+                                                    
                                                 </div>
                                                 
 

@@ -14,7 +14,8 @@ const MyChannel = () => {
   const [toggleButton, setToggleButton] = useState(false)
   const navigate = useNavigate();
   const [isEdit, setIsEdit] = useState(false)
-  const [channelname , setChannelname] = useState(localStorage.getItem("channelname"));
+  const [channelname , setChannelname] = useState(localStorage.getItem("channels" ) || null);
+  const [id , setID] = useState(localStorage.getItem('id'))
 
   // imageIcon , video_url , description , genre
   const [editable, setEditable] = useState({
@@ -25,7 +26,7 @@ const MyChannel = () => {
   })
   const [videoId, setVideoId] = useState(null)
 
-  console.log(editable);
+  // console.log(editable);
 
 
 
@@ -113,13 +114,13 @@ const MyChannel = () => {
     setIsEdit(true)
     setVideoId(id)
 
-    console.log(id);
+    // console.log(id);
 
   }
 
   const handledata = async (e, id) => {
     setIsEdit(true)
-    console.log(typeof (id));
+  
 
     const { name, value } = e.target;
 
@@ -151,24 +152,34 @@ const MyChannel = () => {
       ErrorMessage("not updated")
     }
   }
-
+  // if (channelname === null) {
+  //   return (
+  //     <>
+  //       <div className='w-full h-full flex justify-center'>
+  //                     <h1>Channel not created , create it first</h1>
+  //         </div>
+  //     </>
+  //   )
+  // }
 
   return (
     <>
       <SideBar />
-      {channelname && (
+     
         <>
-            <div className="container w-full h-screen grid grid-cols-1 align-middle justify-center gap-5 p-5 xs:75% sm:75% md:75% lg:75% xl:75%">
+          <div className="container w-full h-screen grid grid-cols-1 align-middle justify-center gap-5 p-5 xs:75% sm:75% md:75% lg:75% xl:75%">
         <div className="item-1 grid grid-cols-1 place-content-center bg-[#212121] gap-10 items-center">
           <div className="item grid grid-cols-1 place-content-center items-center gap-5">
-            <img src={channel.channelLogo} className='rounded-full mix-blend-normal' width={200} height={200} alt="Channel Logo" />
+            <img src={channel ? channel.channelLogo : ""} className='rounded-xl mix-blend-normal' width={200} height={200} alt={channel ? "loading.." : "create channel first"} />
             <div className="item text-3xl">
-              <p className='font-bold'>Name: {channel.channelName}</p>
-              <p className='font-bold'>Created: {new Date().toDateString()}</p>
+              <p className='font-bold'>Name: {channel ? channel.channelName : ""}</p>
+              <p className='font-bold'>Created: {channel ? new Date().toDateString() : ""}</p>
             </div>
           </div>
         </div>
-
+        {channel && (
+          <>
+              
         <div className='bg-[#191919] py-3 px-2 items-center flex justify-between'>
           <button onClick={() => navigate('/upload')} className='px-5 py-2 border-2 rounded-lg hover:bg-gray-500 transition-all duration-100'>Upload Video</button>
           {/* <button onClick={() => navigate('/createChannel')} className='px-5 py-2 border-2 rounded-lg hover:bg-gray-500 transition-all duration-100 ml-4'>Edit Channel</button> */}
@@ -200,6 +211,9 @@ const MyChannel = () => {
             <p>no videos to display </p>
           )}
         </div>
+          
+          </>
+        )}
         <div className={isEdit ? "showcontainer grid grid-cols-1 xs:scale-75 sm:scale-50 md:scale-75 lg:scale-75 xl:scale-75 2xl:scale-90 absolute w-[90%] h-full left-24 border-2 z-1 bg-[#212121]" : "hidden"}>
           <div className='flex h-fit justify-end'>
             <span onClick={() => setIsEdit(false)} className='text-3xl mr-2'>X</span>
@@ -224,16 +238,8 @@ const MyChannel = () => {
         </div>
       </div>
         </>
-      )}
+    
       {/* <ToastContainer /> */}
-
-      {!channelname && (
-        <>
-            <div className='w-full h-full flex justify-center'>
-                      <h1>Channel not created , create it first</h1>
-            </div>
-        </>
-      )}
     </>
   );
 }

@@ -14,7 +14,14 @@ import VideoRoutes from './Routes/Videos.js';
 app.use(express.json());
 app.use(express.urlencoded ({extended : true}))
 app.use(bodyParser.json());
-app.use (cros())
+app.use (cros(
+    {
+        origin : ["https://deploy-mern-1whq.vercel.app"],
+        methods : ["GET" , "POST" , "PUT" , "DELETE"],
+        credentials : true
+    }
+))
+
 app.use ('/auth' , router);
 YoutubeDataRoutes(app)
 commentRoutes(app)

@@ -49,17 +49,14 @@ const ViewProfile = () => {
     
   }
 
-  if (reload === true) {
-    return <h1 className='text-4xl animate-pulse font-bold'>Please Wait while we are creating your profile</h1>
+  if (reload  && channel) {
+      return <h1 className='text-4xl animate-pulse font-bold'>Please Wait while we are creating your profile</h1>
   }
-
   if (channelError) {
     return <h1>error</h1>
   }
 
-
-
-
+  
 
 
   return (
@@ -82,13 +79,13 @@ const ViewProfile = () => {
             </div>
           </div>
         </div>
-        {channel.length === 0  && (
-           "You have not created any channel yet"
-        )}
-        {channel.length !== 0 && (
+        
+
+      
+        {channel && (
           <section className='border-2 mt-2 border-transparent shadow-xl  rounded-lg p-10 w-full'>
                 <section className='border shadow-2xl shadow-gray-800 bg-[#292929] rounded-2xl p-2'>
-                <img src={channel.channelLogo}  width={200} height={200} className='rounded mix-blend-color-burn' />
+                <img src={channel.channelLogo} alt='You have not created any channel yet'  width={200} height={200} className='rounded mix-blend-color-burn text-yellow-100 font-bold' />
                 <p className='mt-2 ml-5 '><span className='text-3xl font-bold xs:text-sm text-gray-600'>Channel Name</span> : <span className='text-2xl font-bold  xs:text-sm'>{channel.channelName}</span></p>
                 </section>
           </section>

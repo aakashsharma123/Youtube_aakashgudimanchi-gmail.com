@@ -39,7 +39,7 @@ export const PostVideo = async (req, res) => {
         
 
         if (!channel ) {
-            return res.status(404).json({message : "something is wrong"})
+            return res.status(404).json({message : "channel not there create it first"})
         }else {
             await youtubeDataModel.insertMany ([video])
 

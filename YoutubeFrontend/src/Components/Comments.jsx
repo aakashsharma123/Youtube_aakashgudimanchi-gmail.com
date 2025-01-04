@@ -33,7 +33,7 @@ const Comments = () => {
                
                 handleGetComments();
                 
-                console.log("adding Comment to backend", result);
+                // console.log("adding Comment to backend", result);
             }
         } catch (err) {
             console.log("something happened", err);
@@ -57,7 +57,7 @@ const Comments = () => {
             if (response.ok) {
                 const result = await response.json();
                 setComments(result.videoComment);
-                console.log(result);
+                // console.log(result);
             }
         } catch (err) {
             console.log(err);
@@ -81,7 +81,7 @@ const Comments = () => {
 
     const grabCommentAndDeleteinDataBase = async (deleteComment) => {
         const deleteCommentId = String(deleteComment._id);
-        console.log(deleteCommentId);
+        // console.log(deleteCommentId);
 
         try {
             const url = `http://localhost:3000/deletecomment/${deleteCommentId}`;
@@ -96,7 +96,7 @@ const Comments = () => {
 
             if (response.ok) {
                 const result = await response.json();
-                console.log(result);
+                // console.log(result);
             }
         } catch (err) {
             console.log('not deleted dont know why');
