@@ -14,13 +14,7 @@ import VideoRoutes from './Routes/Videos.js';
 app.use(express.json());
 app.use(express.urlencoded ({extended : true}))
 app.use(bodyParser.json());
-app.use (cros(
-    {
-        origin : ["https://deploy-mern-1whq.vercel.app"],
-        methods : ["GET" , "POST" , "PUT" , "DELETE"],
-        credentials : true
-    }
-))
+app.use (cros())
 
 app.use ('/auth' , router);
 YoutubeDataRoutes(app)
@@ -28,7 +22,7 @@ commentRoutes(app)
 ChannelRoutes(app)
 VideoRoutes(app);
 
-const port = process.env.port
+const port = process.env.port || 3000
 
 app.listen (port , () => {
     console.log ("server is listening to port : 3000")

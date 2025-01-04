@@ -99,8 +99,8 @@ export const deleteVideo = async (req, res) => {
         await videoModel.deleteOne ({
             _id : id
         })
-        await youtubeDataModel.deleteOne ({
-            _id : id
+        await youtubeDataModel.findOneAndDelete ({
+             _id: id
         })
 
         return res.status(200).json({message : "deleted successfully"})
