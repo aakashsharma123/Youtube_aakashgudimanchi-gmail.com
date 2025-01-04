@@ -54,12 +54,12 @@ const Body = () => {
   return (
     <>
       {Token && (
-        <div className='mainContainer flex w-full max-h-full xs:h-screen'>
+        <div className='mainContainer flex w-full max-h-full  '>
           <div className="sideBar-container main flex w-full max-h-full ">
             <SideBar />
             <div className="flex-col space-x-9 justify-center py-4 w-full">
               <FilterCategory setData={setFilterData} data={filterData} />
-              <div className="videocontainer grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 h-[700px]  overflow-y-auto">
+              <div className="videocontainer grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 h-[700px]   overflow-y-auto">
                 {filterData.map((each) => (
                   <VideoDetails key={each.id} details={each} />
                 ))}

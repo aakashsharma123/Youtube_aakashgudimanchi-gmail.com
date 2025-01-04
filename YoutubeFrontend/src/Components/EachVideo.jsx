@@ -6,6 +6,7 @@ import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import { MdDownload } from "react-icons/md";
 import Comments from './Comments';
+// import '../Styles/EachVideo.css';
 
 const EachVideo = () => {
     const { id } = useParams();

@@ -15,7 +15,7 @@ const ViewProfile = () => {
 
   const [channelError, setChannelError] = useState(null);
 
-  const [reload ,setreload] = useState(false);
+  const [reload ,setreload] = useState(true);
 
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const ViewProfile = () => {
   
 
   async function getChannel() {
-    setreload(true);
+    
     try {
 
       const response = await axios.get("http://localhost:3000/channels", {
@@ -37,23 +37,21 @@ const ViewProfile = () => {
         }
       })
       if (response.status === 200) {
-        // localStorage.setItem("channel", response.data.unqiuechannel.channelName);
+        setreload(false);
         setChannel(response.data.unqiuechannel);
       }
     } catch (err) {
       
       setChannelError(err);
     }finally {
-      setreload(false);
+      localStorage.setItem("channel", response.data.unqiuechannel.channelName);
     }
     
   }
 
-  if (reload === null) {
-    return <h1>loading....</h1>
+  if (reload === true) {
+    return <h1 className='text-4xl animate-pulse font-bold'>Please Wait while we are creating your profile</h1>
   }
-
-
 
   if (channelError) {
     return <h1>error</h1>
@@ -89,10 +87,10 @@ const ViewProfile = () => {
         )}
         {channel.length !== 0 && (
           <section className='border-2 mt-2 border-transparent shadow-xl  rounded-lg p-10 w-full'>
-              <section className='border shadow-2xl shadow-gray-800 bg-[#292929] rounded-2xl p-2'>
-                  <img src={channel.channelLogo}  width={200} height={200} className='rounded mix-blend-color-burn' />
-                  <p className='mt-2 ml-5 '><span className='text-3xl font-bold text-gray-600'>Channel Name</span> : <span className='text-2xl font-bold'>{channel.channelName}</span></p>
-              </section>
+                <section className='border shadow-2xl shadow-gray-800 bg-[#292929] rounded-2xl p-2'>
+                <img src={channel.channelLogo}  width={200} height={200} className='rounded mix-blend-color-burn' />
+                <p className='mt-2 ml-5 '><span className='text-3xl font-bold text-gray-600'>Channel Name</span> : <span className='text-2xl font-bold'>{channel.channelName}</span></p>
+                </section>
           </section>
         )}
       </div>

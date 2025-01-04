@@ -1,0 +1,65 @@
+
+@media (min-width : 853px) and (max-width: 1024px) {
+    /* EachVideo.css */
+
+.main-container {
+    margin: 1rem;
+    max-width: 100%;
+}
+
+.video-section {
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.video-frame {
+    border-radius: 0.75rem; /* rounded-xl */
+    width: 100%;
+    aspect-ratio: 16 / 9; /* aspect-video */
+}
+
+.description {
+    padding-left: 1.25rem; /* px-5 */
+    padding-right: 1.25rem; /* px-5 */
+    font-size: 1rem; /* text-base */
+}
+
+.user-info {
+    padding: 0.5rem; /* p-2 */
+}
+
+.subscribe-button {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: white;
+    background-color: #272727; /* bg-[#272727] */
+    border-radius: 0.375rem; /* rounded-lg */
+}
+
+.subscribe-button:hover {
+    background-color: red; /* hover:bg-red-500 */
+}
+
+.social-buttons {
+    display: flex;
+    gap: 0.75rem; /* gap-3 */
+}
+
+.button-container {
+    background-color: #272727; /* bg-[#272727] */
+    padding-left: 1.25rem; /* px-5 */
+    padding-right: 1.25rem; /* px-5 */
+    padding-top: 0.5rem; /* py-2 */
+    padding-bottom: 0.5rem; /* py-2 */
+}
+
+.comment-section {
+    background-color: #292929; /* bg-[#292929] */
+    border-radius: 0.375rem; /* rounded-lg */
+}
+
+}

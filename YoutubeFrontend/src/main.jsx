@@ -1,84 +1,71 @@
-import {StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Body from './Components/Body.jsx'
-import EachVideo from './Components/EachVideo.jsx'
-import SuggestedVideos from './Components/SuggestedVideos.jsx'
-import SideBar from './Components/SideBar.jsx'
-import Signin from './Components/Signin.jsx'
-import Login from './Components/Login.jsx'
-import React from 'react'
-import ViewProfile from './Components/ViewProfile.jsx'
-import VideoLayout from './Components/videoLayout.jsx'
-import UploadVideo from './Components/UploadVideo.jsx'
-import CreateChannel from './Components/CreateChannel.jsx'
-import MyChannel from './Components/MyChannel.jsx'
+import { StrictMode, Suspense, lazy } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from 'react';
 
-const router = createBrowserRouter ([
+const App = lazy(() => import('./App.jsx'));
+const Body = lazy(() => import('./Components/Body.jsx'));
+const EachVideo = lazy(() => import('./Components/EachVideo.jsx'));
+const SuggestedVideos = lazy(() => import('./Components/SuggestedVideos.jsx'));
+const SideBar = lazy(() => import('./Components/SideBar.jsx'));
+const Signin = lazy(() => import('./Components/Signin.jsx'));
+const Login = lazy(() => import('./Components/Login.jsx'));
+const ViewProfile = lazy(() => import('./Components/ViewProfile.jsx'));
+const VideoLayout = lazy(() => import('./Components/videoLayout.jsx'));
+const UploadVideo = lazy(() => import('./Components/UploadVideo.jsx'));
+const CreateChannel = lazy(() => import('./Components/CreateChannel.jsx'));
+const MyChannel = lazy(() => import('./Components/MyChannel.jsx'));
+
+const router = createBrowserRouter([
   {
-    path : '/',
-    element : <App/>,
-    children : [
+    path: '/',
+    element: <App />,
+    children: [
       {
-        index : true,
-        element : <Body/>
-      },
-
-      
-      {
-        path : "/viewProfile",
-        element : <ViewProfile />
-      },
-
-
-      {
-        path : '/video/:id',
-        element : <VideoLayout/>   
-      },
-      
-      {
-        path : '/upload',
-        element : <UploadVideo/>
+        index: true,
+        element: <Body />
       },
       {
-        path : "/mychannel" , 
-        element : <MyChannel />
+        path: "/viewProfile",
+        element: <ViewProfile />
+      },
+      {
+        path: '/video/:id',
+        element: <VideoLayout />
+      },
+      {
+        path: '/upload',
+        element: <UploadVideo />
+      },
+      {
+        path: "/mychannel",
+        element: <MyChannel />
       }
-     
     ]
   },
-
   {
-    path : '/signin',
-    element : <Signin/>
+    path: '/signin',
+    element: <Signin />
   },
-
   {
-    path : "/login",
-    element : <Login />
+    path: "/login",
+    element: <Login />
   },
-
-
   {
-    path : "/viewProfile",
-    element : <ViewProfile />
+    path: "/viewProfile",
+    element: <ViewProfile />
   },
-
   {
-    path : '/createChannel',
-    element : <CreateChannel />
-  },
-
-  
-])
-
-
+    path: '/createChannel',
+    element: <CreateChannel />
+  }
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-      <RouterProvider router={router}>
-      </RouterProvider>
+    <Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
   </StrictMode>
-)
+);

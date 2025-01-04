@@ -55,6 +55,8 @@ const UploadVideo = () => {
 
             
                 <>
+                    {channelname && (
+                        <>
                     <div className="video-upload-container grid grid-cols-1 place-items-center w-full h-full">
 
                         <div className="upload-now grid grid-cols-1 place-items-center w-full h-full" >
@@ -83,7 +85,33 @@ const UploadVideo = () => {
                         </div>
                         <ToastContainer />
                     </div>
+                        </>
+                    )}
                 </>
+
+
+                {!channelname && (
+                    <>
+                        <div className="video-upload-container grid grid-cols-1 place-items-center w-full h-full">
+                            <div className="upload-now grid grid-cols-1 place-items-center w-full h-full" >
+                                <div className='grid grid-cols-1 gap-5 p-5 justify-start w-full h-full'>
+                                    <div className='flex items-center justify-center gap-4 text-2xl'>
+                                        <img src='youtube_logo_icon_168737.ico' alt="" width={50} height={50} />
+                                        <span className='font-bold'>Create Channel</span>
+                                    </div>
+                                    <div className='flex items-center justify-center gap-4 text-2xl'>
+                                        <span className='font-bold'>Create Channel to upload video</span>
+                                    </div>
+                                </div>
+                                <div className='flex justify-center mt-2 gap-5'>
+                                    <button onClick={() => navigate('/createchannel')} type="button" className='px-5 py-2 border-2 border-white rounded-lg hover:bg-[#292929]'>Create Channel</button>
+                                    <button onClick={() => navigate('/')} type="button" className='px-5 py-2 border-2 border-white rounded-lg hover:bg-[#292929]'>Home</button>
+                                </div>
+                            </div>
+                            <ToastContainer />
+                        </div>
+                    </>
+                )}
             
 
 

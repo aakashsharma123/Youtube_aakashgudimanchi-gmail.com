@@ -39,7 +39,7 @@ const NavBar = () => {
             localStorage.removeItem("name");
             localStorage.removeItem('email');
             localStorage.removeItem('id');
-            localStorage.removeItem('channelname');
+            // localStorage.removeItem('channelname');
             setToken(null);
             setTokenHolder(null);
             setEmail(null);
