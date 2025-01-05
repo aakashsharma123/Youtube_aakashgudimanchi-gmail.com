@@ -7,23 +7,21 @@ import FilterCategory from './FilterButtons';
 
 const VideoDetails = ({ details }) => {
 
-  
-  
   return (
-    <div key={details._id} className='videoDetailsContainer mt-3 cursor-pointer grid grid-cols-1 gap-4 w-full max-w-md mx-auto'>
+    <div key={details._id} className='videoDetailsContainer h-96 mt-3 cursor-pointer grid grid-cols-1 gap-4 w-full max-w-md mx-auto'>
       <NavLink to={`/video/${details._id}`}>
-        <img className='image-container w-full h-80 rounded-lg' src={details.imageIcon}  alt="" />
+        <img className='image-container w-full h-48 md:h-64 lg:h-80 rounded-lg object-cover' src={details.imageIcon}  alt="" />
       </NavLink>
       <div className='grid grid-cols-1'>
         <div className='text-container flex items-center gap-2'>
-          <IoPersonCircleOutline className='personcircle size-8 hidden xs:block' />
-          <div className='text-description text-sm'>{details.description}</div>
+          <IoPersonCircleOutline className='personcircle size-6 md:size-8 hidden xs:block' />
+          <div className='text-description text-sm md:text-base'>{details.description}</div>
         </div>
         <div className='flex justify-between items-center text-container'>
-          <div className='px-4 w-full text-sm'>{details.owner}</div>
-          <span className='size-4 hidden xs:block'><SiTicktick /></span>
+          <div className='px-4 w-full text-sm md:text-base'>{details.owner}</div>
+          <span className='size-4 md:size-6 hidden xs:block'><SiTicktick /></span>
         </div>
-        <div className='flex justify-between px-4 text-sm'>
+        <div className='flex justify-between px-4 text-sm md:text-base'>
           <p>{details.views}</p>
           <span>{details.time}</span>
         </div>

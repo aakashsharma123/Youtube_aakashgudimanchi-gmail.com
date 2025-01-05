@@ -111,7 +111,7 @@ const EachVideo = () => {
                     ) : (
                         <article className="secound-container bg-[#292929] border-none rounded-lg m-7 p-5 w-full xs:w-full">
                             <div className="flex justify-center">
-                                <p className='text-2xl'>Please <span className='text-green-500 underline'>login</span> to add comments</p>
+                                <p className='text-2xl'>Please <span className='text-green-500 underline'>login</span> to add comments and view Comments</p>
                             </div>
                         </article>
                     )}
