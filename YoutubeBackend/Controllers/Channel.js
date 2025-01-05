@@ -4,6 +4,7 @@ import {Channel} from "../Models/Channel.js";
 
 
 export const PostChannel = async (req, res) => {
+    
     const {channelName , channelLogo , channelBanner , channelDescription} = req.body;
     const {_id} = req.user
 

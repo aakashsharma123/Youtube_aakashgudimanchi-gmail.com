@@ -28,57 +28,42 @@ const NavBar = () => {
       const [Token, setToken] = useState(localStorage.getItem("token") || '');
       const [tokenHolder, setTokenHolder] = useState(localStorage.getItem("name") || '');
       const [email, setEmail] = useState(localStorage.getItem("email") || '');
-      // const [channelname , setChannelName] = useState(localStorage.getItem("channel") || '');
       const [textContent, setTextContent] = useState('');
       const [toggleButton, setToggleButton] = useState(false);
       const [toggleSideBar, setToggleSidebar] = useState(false);
-      // const [cn , setcname] = useState(localStorage.getItem("channels") || '');
-      const [channels ,  setChannel] = useState(null);
-
+      const [channels, setChannel] = useState(null);
+      const [isChannel, setIsChannel] = useState(JSON.parse(localStorage.getItem("channelrender")) || false);
+      
       const navigate = useNavigate();
-      
-
+  
       const handleLogout = () => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("name");
-            localStorage.removeItem('email');
-            localStorage.removeItem('id');
-            localStorage.removeItem('channelname');
-            setToken(null);
-            setTokenHolder(null);
-            setEmail(null);
-            // setChannelName(null);
-            successMessage("logout SuccessFull")
-            navigate('/')
-      }
-
-      const getchannels = async () => {
-            const url = 'http://localhost:3000/channels'
-
-            try {
-                  const response  = await axios.get (url , {
-                        headers : {
-                              "Authorization" : Token
-                        }
-                  });
-
-                  if (response.statusText === 200) {
-                        setChannel (response.data.unqiuechannel)
-                  }else {
-                        setChannel([]);
-                  }
-            }catch(err) {
-                  ErrorMessage(err)
-            }
-      }
-
+          localStorage.clear();
+          setToken('');
+          setTokenHolder('');
+          setEmail('');
+          successMessage("Logout Successful");
+          navigate('/');
+      };
+  
+      const getChannels = async () => {
+          const url = 'http://localhost:3000/channels';
+          try {
+              const response = await axios.get(url, { headers: { "Authorization": Token } });
+              if (response.status === 200) {
+                  setChannel(response.data.uniquechannel);
+              } else {
+                  setChannel([]);
+              }
+          } catch (err) {
+              ErrorMessage(err);
+          }
+      };
+  
       useEffect(() => {
-            if (Token) {  // Make sure there's a valid token
-                  getchannels();
-            }
-      }, [Token]);  // Only re-fetch channels when the token changes
-      
-
+          if (Token) {
+              getChannels();
+          }
+      }, [Token]);
 
 
       return (
@@ -132,22 +117,29 @@ const NavBar = () => {
                                                       <div className='flex flex-col ml-4 '>
                                                             <span className='text-xl xs:text-sm'>{tokenHolder}</span>
                                                             <span className='text-xl xs:text-sm'>{email}</span>
-                                                           
-                                                             {channels  &&  <Link to={'/ViewProfile'}><span className='text-xl xs:text-sm text-blue-600 font-extrabold hover:text-red-600 '>View your Account</span></Link>}           
+                                                            {channels === true &&  isChannel === false || isChannel === true ? (
+                                                                  <Link to={'/ViewProfile'}><span className='text-xl xs:text-sm text-blue-600 font-extrabold hover:text-red-600 '>View your Account</span></Link>      
+                                                            ) : (
+                                                                  ""
+                                                            )}
+
+
                                                           
                                                       </div>
                                                 </div>
 
-                                                            {channels && (
-                                                <div className='flex items-center border-b-2 xs:w-[220px]' >
+                                                            {channels === true && isChannel === false || isChannel === true ? (
+                                                                  <div className='flex items-center border-b-2 xs:w-[220px]' >
                                                                   <div className='flex items-center gap-4 border-b-2 xs:w-[220px]'>
                                                                   <>
                                                                         <span className='text-xl xs:text-sm '><FaArrowRight /></span>
                                                                         <span onClick={() => navigate('/mychannel')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>My Channel</span>
                                                                   </>
                                                                    </div>
-                                                </div>
-                                                            )}
+                                                                  </div>
+                                                            ) : (
+                                                                  ""
+                                                            )} 
 
                                                 <div className='flex items-center xs:w-[220px]'>
                                                       <div className='flex items-center gap-4 border-b-2 w-full xs:w-[220px]' >

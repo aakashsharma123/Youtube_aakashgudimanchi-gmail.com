@@ -31,6 +31,7 @@ const MyChannel = () => {
 
 
   async function getVideoData() {
+
     const url = "http://localhost:3000/get/video"
 
     try {
@@ -152,22 +153,13 @@ const MyChannel = () => {
       ErrorMessage("not updated")
     }
   }
-  // if (channelname === null) {
-  //   return (
-  //     <>
-  //       <div className='w-full h-full flex justify-center'>
-  //                     <h1>Channel not created , create it first</h1>
-  //         </div>
-  //     </>
-  //   )
-  // }
 
   return (
     <>
       <SideBar />
      
         <>
-          <div className="container w-full h-screen grid grid-cols-1 align-middle justify-center gap-5 p-5 xs:75% sm:75% md:75% lg:75% xl:75%">
+          <div className="container w-full h-screen grid grid-cols-1 align-middle justify-center gap-5 p-5 xs:scale-75 xs:-translate-y-20  sm:75% md:75% lg:75% xl:75%">
         <div className="item-1 grid grid-cols-1 place-content-center bg-[#212121] gap-10 items-center">
           <div className="item grid grid-cols-1 place-content-center items-center gap-5">
             <img src={channel ? channel.channelLogo : ""} className='rounded-xl mix-blend-normal' width={200} height={200} alt={channel ? "loading.." : "create channel first"} />
@@ -191,14 +183,14 @@ const MyChannel = () => {
               {data.map((item, index) => (
                 <div key={index} className='cursor-pointer border-2 border-gray-600 flex flex-col p-4'>
                   <img onClick={() => navigate(`/video/${item._id}`)} className='w-full h-28 object-cover' src={item.imageIcon} alt="" />
-                  <p>{item.description}</p>
+                  <p className='xs:block'>{item.description}</p>
                   <div className='flex justify-between'>
-                    <p>channel:{item.owner}</p>
-                    <p>views:{item.views}</p>
+                    <p className='xs:block'>channel:{item.owner}</p>
+                    <p className='xs:block'>views:{item.views}</p>
                   </div>
                   <div className='flex justify-between mt-auto'>
-                    <p>{item.time}</p>
-                    <div className='flex gap-2'>
+                    <p className='xs:text-sm  xs:tracking-tighter'>{item.time}</p>
+                    <div className='flex gap-2 xs:gap-0'>
                       {/* setIsEdit(true) */}
                       <button onClick={() => handleids(item._id)} className='xs:scale-50 sm:scale-75 md:scale-75 lg:scale-75 xl:scale-75 px-5 py-2 hover:bg-slate-500 transition-all bg-slate-400 duration-100 rounded-lg'>Edit</button>
                       <button onClick={(e) => handledelete(e, item._id)} className='xs:scale-50 sm:scale-75 md:scale-75 lg:scale-75 xl:scale-75 px-5 py-2  bg-slate-400 hover:bg-slate-500 transition-all duration-100 rounded-lg'>Delete</button>

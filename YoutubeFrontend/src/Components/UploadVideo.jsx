@@ -16,7 +16,7 @@ const UploadVideo = () => {
     const [video_url, setvideo_url] = useState("");
     const [description, setdescription] = useState("");
     const [category, setcategory] = useState("");
-    // const [channelname, setchannelname] = useState(localStorage.getItem("channels") || null)
+    const [isChannel, setIsChannel] = useState(JSON.parse(localStorage.getItem('channelrender')))
     const navigate = useNavigate();
 
     const handlesubmit = async (e) => {
@@ -32,9 +32,10 @@ const UploadVideo = () => {
             })
 
             if (response.status === 201) {
-                // console.log(response);
 
                 successMessage("video uploaded successfully ")
+
+                navigate("/myChannel")
             }
         } catch (err) {
             ErrorMessage("video not uploaded because u didnt created channel")
@@ -47,11 +48,9 @@ const UploadVideo = () => {
 
 
         <>
-
-
-            <>
-
+            {isChannel && (
                 <>
+
                     <div className="video-upload-container grid grid-cols-1 place-items-center w-full h-full">
 
                         <div className="upload-now grid grid-cols-1 place-items-center w-full h-full" >
@@ -81,8 +80,28 @@ const UploadVideo = () => {
                         <ToastContainer />
                     </div>
                 </>
+            )}
 
-            </>
+
+            {!isChannel && (
+                <>
+                    <div className="video-upload-container shadow-lg grid grid-cols-1 place-items-center w-full h-full">
+
+                        <div className="upload-now grid grid-cols-1 place-items-center w-full h-full " >
+                                <h1 className='text-3xl font-bold font-serif tracking-tighter'>First You Should Have an Channel</h1>
+                                <div className='flex justify-center mt-2 gap-5'>
+                                    <button onClick={() => navigate('/CreateChannel')} className='px-5 py-2 border-2 border-white rounded-lg hover:bg-[#292929]'>Create Channel</button>
+                                    <button onClick={() => navigate('/')} type="button" className='px-5 py-2 border-2 border-white rounded-lg hover:bg-[#292929]'>Home</button>
+                                </div>
+                            
+                        </div>
+                        <ToastContainer />
+                    </div>
+                </>
+            )}
+
+
+
         </>
 
     );

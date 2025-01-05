@@ -1,6 +1,7 @@
 import User from '../Models/User.js'
 import bcrypt from 'bcrypt';
 import Jwt from 'jsonwebtoken'
+import { Channel } from '../Models/Channel.js';
 
 export async function registeration (req , res) {
     const {name , email , password} = req.body;
@@ -25,10 +26,11 @@ export async function registeration (req , res) {
 }
 
 export async function login (req , res) {
+
     const {email , password} = req.body;
+    const user = await User.findOne({email});
 
     try {
-        const user = await User.findOne({email});
 
         if (!user) {
             return res.status(403).json ({message : "you are not registered first register yourself"} )
@@ -42,15 +44,18 @@ export async function login (req , res) {
 
         const accessToken = Jwt.sign ({email : user.email , password : user.password} , "aakash@2002" , {expiresIn : '7d'})
 
+        
+    
        if (accessToken) {
-
+        const channel =  await Channel.findOne ({user_id : user._id});
         res.status(200).json ({
             message : "login successfull ",
-             success : true,
+            success : true,
             token : accessToken,
             name : user.name,
             email : user.email,
-            id : user._id
+            id : user._id,
+            isChannel : channel ? true : false
             })
        }
 

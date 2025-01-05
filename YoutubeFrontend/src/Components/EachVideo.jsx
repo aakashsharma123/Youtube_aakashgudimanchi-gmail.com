@@ -45,7 +45,7 @@ const EachVideo = () => {
     useEffect(() => {
         const filterDetails = youtubeData.filter(each => each._id === id);
         setFilteredData(filterDetails[0]);
-        console.log("Filtered video data: ", filterDetails[0]);
+        
     }, [youtubeData, id]);
 
     if (!filteredData) {

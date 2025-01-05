@@ -4,12 +4,18 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { ErrorMessage, successMessage } from '../ErrorHandle/HandleResponse';
 import Navbar from './NavBar.jsx';
+import { useAuth } from '../utlies/AuthContext.jsx';
+import axios from 'axios';
 
 const Login = () => {
+
+
     const [LoginData, setLoginData] = useState({
         email: '',
         password: ''
     });
+
+
     const [login, setlogin] = useState(false);
     const navigate = useNavigate();
 
@@ -25,19 +31,24 @@ const Login = () => {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(LoginData)
             });
 
             const result = await response.json();
-            const { message, success, token, name, email, id } = result;
+            const { message, success, token, name, email, id , isChannel } = result;
 
             if (token) {
+                console.log("is channel is " , isChannel);
+                
                 localStorage.setItem("token", token);
                 localStorage.setItem("name", name);
                 localStorage.setItem("email", email);
                 localStorage.setItem("id", id);
+                // setIsChannel(isChannel)
+
+                localStorage.setItem("channelrender" , JSON.stringify (isChannel));
             }
 
             if (localStorage.getItem("token")) {

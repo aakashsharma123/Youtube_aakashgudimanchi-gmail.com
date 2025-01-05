@@ -43,10 +43,7 @@ const ViewProfile = () => {
     } catch (err) {
       
       setChannelError(err);
-    }finally {
-      localStorage.setItem("channel", response.data.unqiuechannel.channelName);
     }
-    
   }
 
   if (reload  && channel) {

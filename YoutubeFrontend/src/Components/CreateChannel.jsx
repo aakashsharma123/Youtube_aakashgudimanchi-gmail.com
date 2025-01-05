@@ -45,9 +45,7 @@ const CreateChannel = () => {
             });
 
             if (response.status === 201) {
-              
-                localStorage.setItem("channels", channelName);
-
+                localStorage.setItem("channelrender" , true);
                 successMessage("Channel created successfully");
                 navigate('/viewProfile');
             }

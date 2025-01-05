@@ -40,7 +40,7 @@ const SideBar = () => {
     const [toggleButton , setToggleButton] = useState (false);
     const {toggleSideBar} = useOutletContext();
 
-    console.log(toggleSideBar);
+    // console.log(toggleSideBar);
     
 
 
@@ -217,7 +217,7 @@ const SideBar = () => {
         }, */}
         {/* grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px] */}
             {toggleSideBar && (
-                <div className="main-container overflow-y-auto h-[700px]   xs:hidden ">
+                <div className="main-container w-[20%] overflow-y-auto h-[700px] transition-all duration-100   xs:hidden ">
                 <div className="all-side-bar-items w-full grid grid-cols-1 md:grid md:w-64 ">
                     <div onClick={() => navigate('/')} className='item flex py-3 items-center space-x-3 font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100'>
                         <span><IoMdHome /></span>
@@ -310,7 +310,7 @@ const SideBar = () => {
                     <hr />
                     <br />
 
-                    <div className="text">
+                    <div className="text transition-all duration-100">
                         <p className='font-light text-xs space-x-3 flex justify-between'><span>About</span> <span>Press</span> <span>Copyright</span></p>
 
 

@@ -6,9 +6,9 @@ import SuggestedVideos from './SuggestedVideos'
 const VideoLayout = () => {
   return (
 
-    <div className='flex  '>
+    <div className='flex flex-shrink flex-grow'>
             <SideBar /> 
-              <div className='overflow-y-auto h-[670px] flex xs:flex-col xs:h-[100%]  '>
+              <div className='overflow-y-auto h-[670px] flex xs:flex-col xs:h-[670px]   '>
                   <EachVideo/>
                   <SuggestedVideos />
               </div>

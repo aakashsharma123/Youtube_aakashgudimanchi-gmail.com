@@ -16,6 +16,7 @@ const VideoLayout = lazy(() => import('./Components/videoLayout.jsx'));
 const UploadVideo = lazy(() => import('./Components/UploadVideo.jsx'));
 const CreateChannel = lazy(() => import('./Components/CreateChannel.jsx'));
 const MyChannel = lazy(() => import('./Components/MyChannel.jsx'));
+import { AuthProvider } from './utlies/AuthContext.jsx';
 
 const router = createBrowserRouter([
   {
@@ -64,8 +65,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
+    <AuthProvider>
+        <Suspense fallback={<div>Loading...</div>}>
+          <RouterProvider router={router} />
+        </Suspense>
+    </AuthProvider>
   </StrictMode>
 );
