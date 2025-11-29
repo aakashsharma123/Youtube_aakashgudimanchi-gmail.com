@@ -16,7 +16,7 @@ const CreateChannel = () => {
     });
 
     const navigate = useNavigate();
-    
+
     const handleText = (e) => {
         const { name, value } = e.target;
         setChannelData(prevData => ({
@@ -24,7 +24,7 @@ const CreateChannel = () => {
             [name]: value
         }));
     };
-    
+
     const channelname = channelData.channelName
 
 
@@ -33,7 +33,7 @@ const CreateChannel = () => {
 
         try {
             const { channelName, channelLogo, channelBanner, channelDescription } = channelData;
-            const response = await axios.post('http://localhost:3000/channel', {
+            const response = await axios.post('http://localhost:3001/channel', {
                 channelName,
                 channelLogo,
                 channelBanner,
@@ -45,7 +45,7 @@ const CreateChannel = () => {
             });
 
             if (response.status === 201) {
-                localStorage.setItem("channelrender" , true);
+                localStorage.setItem("channelrender", true);
                 successMessage("Channel created successfully");
                 navigate('/viewProfile');
             }

@@ -27,7 +27,7 @@ const Login = () => {
             return ErrorMessage("Email or password not filled");
         }
         try {
-            const url = 'http://localhost:3000/auth/login'
+            const url = 'http://localhost:3001/auth/login'
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
@@ -37,18 +37,18 @@ const Login = () => {
             });
 
             const result = await response.json();
-            const { message, success, token, name, email, id , isChannel } = result;
+            const { message, success, token, name, email, id, isChannel } = result;
 
             if (token) {
-                console.log("is channel is " , isChannel);
-                
+                console.log("is channel is ", isChannel);
+
                 localStorage.setItem("token", token);
                 localStorage.setItem("name", name);
                 localStorage.setItem("email", email);
                 localStorage.setItem("id", id);
                 // setIsChannel(isChannel)
 
-                localStorage.setItem("channelrender" , JSON.stringify (isChannel));
+                localStorage.setItem("channelrender", JSON.stringify(isChannel));
             }
 
             if (localStorage.getItem("token")) {

@@ -20,4 +20,5 @@ const youtubeDataSchema = new mongoose.Schema({
     user_id: { type: mongoose.Schema.Types.ObjectId , default: null }
 })
 
-export const youtubeDataModel = mongoose.model("youtubeData", youtubeDataSchema);
+// Export model with explicit collection name to avoid automatic pluralization
+export const youtubeDataModel = mongoose.model("youtubeData", youtubeDataSchema, "youtubeData");

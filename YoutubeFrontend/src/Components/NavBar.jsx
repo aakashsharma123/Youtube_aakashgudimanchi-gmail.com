@@ -33,43 +33,43 @@ const NavBar = () => {
       const [toggleSideBar, setToggleSidebar] = useState(false);
       const [channels, setChannel] = useState(null);
       const [isChannel, setIsChannel] = useState(JSON.parse(localStorage.getItem("channelrender")) || false);
-      
+
       const navigate = useNavigate();
-  
+
       const handleLogout = () => {
-          localStorage.clear();
-          setToken('');
-          setTokenHolder('');
-          setEmail('');
-          successMessage("Logout Successful");
-          navigate('/');
+            localStorage.clear();
+            setToken('');
+            setTokenHolder('');
+            setEmail('');
+            successMessage("Logout Successful");
+            navigate('/');
       };
-  
+
       const getChannels = async () => {
-          const url = 'http://localhost:3000/channels';
-          try {
-              const response = await axios.get(url, { headers: { "Authorization": Token } });
-              if (response.status === 200) {
-                  setChannel(response.data.uniquechannel);
-              } else {
-                  setChannel([]);
-              }
-          } catch (err) {
-              ErrorMessage(err);
-          }
+            const url = 'http://localhost:3001/channels';
+            try {
+                  const response = await axios.get(url, { headers: { "Authorization": Token } });
+                  if (response.status === 200) {
+                        setChannel(response.data.uniquechannel);
+                  } else {
+                        setChannel([]);
+                  }
+            } catch (err) {
+                  ErrorMessage(err);
+            }
       };
-  
+
       useEffect(() => {
-          if (Token) {
-              getChannels();
-          }
+            if (Token) {
+                  getChannels();
+            }
       }, [Token]);
 
 
       return (
             <>
                   {/* flex justify-between items-center */}
-                  <div className="container   px-4 flex justify-between items-center  max-w-full    "> 
+                  <div className="container   px-4 flex justify-between items-center  max-w-full    ">
                         {/* first div is for left part */}
 
                         <div className="left-part flex items-center  space-x-3  ">
@@ -117,29 +117,29 @@ const NavBar = () => {
                                                       <div className='flex flex-col ml-4 '>
                                                             <span className='text-xl xs:text-sm'>{tokenHolder}</span>
                                                             <span className='text-xl xs:text-sm'>{email}</span>
-                                                            {channels === true &&  isChannel === false || isChannel === true ? (
-                                                                  <Link to={'/ViewProfile'}><span className='text-xl xs:text-sm text-blue-600 font-extrabold hover:text-red-600 '>View your Account</span></Link>      
+                                                            {channels === true && isChannel === false || isChannel === true ? (
+                                                                  <Link to={'/ViewProfile'}><span className='text-xl xs:text-sm text-blue-600 font-extrabold hover:text-red-600 '>View your Account</span></Link>
                                                             ) : (
                                                                   ""
                                                             )}
 
 
-                                                          
+
                                                       </div>
                                                 </div>
 
-                                                            {channels === true && isChannel === false || isChannel === true ? (
-                                                                  <div className='flex items-center border-b-2 xs:w-[220px]' >
-                                                                  <div className='flex items-center gap-4 border-b-2 xs:w-[220px]'>
+                                                {channels === true && isChannel === false || isChannel === true ? (
+                                                      <div className='flex items-center border-b-2 xs:w-[220px]' >
+                                                            <div className='flex items-center gap-4 border-b-2 xs:w-[220px]'>
                                                                   <>
                                                                         <span className='text-xl xs:text-sm '><FaArrowRight /></span>
                                                                         <span onClick={() => navigate('/mychannel')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>My Channel</span>
                                                                   </>
-                                                                   </div>
-                                                                  </div>
-                                                            ) : (
-                                                                  ""
-                                                            )} 
+                                                            </div>
+                                                      </div>
+                                                ) : (
+                                                      ""
+                                                )}
 
                                                 <div className='flex items-center xs:w-[220px]'>
                                                       <div className='flex items-center gap-4 border-b-2 w-full xs:w-[220px]' >
@@ -148,16 +148,16 @@ const NavBar = () => {
                                                       </div>
                                                 </div>
                                                 {/* channelName */}
-                                                
+
                                                 <div className='flex items-center xs:w-[220px]'>
-                                                     
-                                                             <div className='flex items-center gap-4 border-b-2 w-full xs:w-[220px]' >
-                                                             <span className='text-xl xs:text-sm '><FaVideo /></span>
-                                                             <span onClick={() => navigate('/upload')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>Upload Video</span>
-                                                             </div>
-                                                    
+
+                                                      <div className='flex items-center gap-4 border-b-2 w-full xs:w-[220px]' >
+                                                            <span className='text-xl xs:text-sm '><FaVideo /></span>
+                                                            <span onClick={() => navigate('/upload')} className='text-xl xs:text-sm hover:text-red-600 hover:font-bold'>Upload Video</span>
+                                                      </div>
+
                                                 </div>
-                                                
+
 
                                                 <div className='flex items-center gap-4 border-b-2 xs:w-[220px] '>
                                                       <FaGoogle className='text-xl xs:text-sm ' />
@@ -203,7 +203,7 @@ const NavBar = () => {
                   <div className='flex justify-center items-center '>
                         <Outlet context={{ textContent, toggleSideBar }} />
                   </div>
-                                    <ToastContainer/>
+                  <ToastContainer />
             </>
       );
 }

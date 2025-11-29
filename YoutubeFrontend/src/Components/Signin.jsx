@@ -21,7 +21,7 @@ const Signin = () => {
             return successMessage("Name, email, or password not filled");
         }
         try {
-            const url = 'http://localhost:3000/auth/register'
+            const url = 'http://localhost:3001/auth/register'
             const response = await fetch(url, {
                 method: "POST",
                 headers: {

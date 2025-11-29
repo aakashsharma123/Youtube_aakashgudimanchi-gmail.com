@@ -5,6 +5,9 @@ import rollupNodePolyFill from 'rollup-plugin-polyfill-node';
 import path from 'path';
 
 export default defineConfig({
+  server: {
+    port: 4000, 
+  },
   optimizeDeps: {
     esbuildOptions: {
       plugins: [

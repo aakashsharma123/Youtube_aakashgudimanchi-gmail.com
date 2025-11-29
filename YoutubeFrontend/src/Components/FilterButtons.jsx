@@ -6,7 +6,7 @@ import '../Styles/FilterButtons.css'
 
 const FilterCategroy = (props) => {
     const [youtubeDetails, setYoutubeDetails] = useState([]);
-    const [Token , setToken] = useState (localStorage.getItem ("token"))
+    const [Token, setToken] = useState(localStorage.getItem("token"))
 
     useEffect(() => {
         getDetails()
@@ -16,11 +16,11 @@ const FilterCategroy = (props) => {
     async function getDetails() {
 
         try {
-            const url = 'http://localhost:3000/'
-            const response = await fetch (url , {
-                method : "GET",
-                headers : {
-                    'Authorization' : Token
+            const url = 'http://localhost:3001/'
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    'Authorization': Token
                 }
             })
 
@@ -32,28 +32,28 @@ const FilterCategroy = (props) => {
 
     }
 
-    function handlefilterButtons (e) {
-        
-        if (e.target.innerHTML === "All") {
-            props.setData (youtubeDetails)
-            return;
-        }else {
-            const filterdetails = youtubeDetails.filter ((each) => each.genre.toLowerCase().includes(e.target.innerHTML.toLowerCase()))
+    function handlefilterButtons(e) {
 
-            props.setData (filterdetails)
+        if (e.target.innerHTML === "All") {
+            props.setData(youtubeDetails)
+            return;
+        } else {
+            const filterdetails = youtubeDetails.filter((each) => each.genre.toLowerCase().includes(e.target.innerHTML.toLowerCase()))
+
+            props.setData(filterdetails)
             return
         }
-            
+
     }
     return (
         <>
-          <div className='filterbuttonContainer flex justify-around flex-1 '>       
-          {
-                FilterButtons.map((cat , index) => (
-                     <button key={index} onClick={(e) => handlefilterButtons(e)} className='filterbutton bg-[#292929] py-1  px-5 hover:bg-[#212121]  xs:border-2  rounded-xl xs:w-[100px] text-white '>{cat}</button>
-                ))
-            }
-          </div>
+            <div className='filterbuttonContainer flex justify-around '>
+                {
+                    FilterButtons.map((cat, index) => (
+                        <button key={index} onClick={(e) => handlefilterButtons(e)} className='filterbutton bg-[#292929] py-1  px-5 hover:bg-[#212121]  xs:border-2  rounded-xl xs:w-[100px] text-white '>{cat}</button>
+                    ))
+                }
+            </div>
         </>
     )
 }

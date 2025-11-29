@@ -23,7 +23,7 @@ const UploadVideo = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:3000/video', {
+            const response = await axios.post('http://localhost:3001/video', {
                 imageIcon, video_url, description, category
             }, {
                 headers: {
@@ -38,7 +38,14 @@ const UploadVideo = () => {
                 navigate("/myChannel")
             }
         } catch (err) {
-            ErrorMessage("video not uploaded because u didnt created channel")
+            if (err.response && err.response.status === 404) {
+                ErrorMessage("Channel not found. Please create a channel first.");
+                localStorage.setItem('channelrender', false);
+                setIsChannel(false);
+            } else {
+                ErrorMessage("Video upload failed.");
+                console.error(err);
+            }
         }
     }
 
@@ -88,12 +95,12 @@ const UploadVideo = () => {
                     <div className="video-upload-container shadow-lg grid grid-cols-1 place-items-center w-full h-full">
 
                         <div className="upload-now grid grid-cols-1 place-items-center w-full h-full " >
-                                <h1 className='text-3xl font-bold font-serif tracking-tighter'>First You Should Have an Channel</h1>
-                                <div className='flex justify-center mt-2 gap-5'>
-                                    <button onClick={() => navigate('/CreateChannel')} className='px-5 py-2 border-2 border-white rounded-lg hover:bg-[#292929]'>Create Channel</button>
-                                    <button onClick={() => navigate('/')} type="button" className='px-5 py-2 border-2 border-white rounded-lg hover:bg-[#292929]'>Home</button>
-                                </div>
-                            
+                            <h1 className='text-3xl font-bold font-serif tracking-tighter'>First You Should Have an Channel</h1>
+                            <div className='flex justify-center mt-2 gap-5'>
+                                <button onClick={() => navigate('/CreateChannel')} className='px-5 py-2 border-2 border-white rounded-lg hover:bg-[#292929]'>Create Channel</button>
+                                <button onClick={() => navigate('/')} type="button" className='px-5 py-2 border-2 border-white rounded-lg hover:bg-[#292929]'>Home</button>
+                            </div>
+
                         </div>
                         <ToastContainer />
                     </div>

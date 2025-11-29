@@ -37,11 +37,11 @@ import { FaHistory } from 'react-icons/fa';
 const SideBar = () => {
 
     const navigate = useNavigate()
-    const [toggleButton , setToggleButton] = useState (false);
-    const {toggleSideBar} = useOutletContext();
+    const [toggleButton, setToggleButton] = useState(false);
+    const { toggleSideBar } = useOutletContext();
 
     // console.log(toggleSideBar);
-    
+
 
 
 
@@ -215,121 +215,108 @@ const SideBar = () => {
             text: "Home",
             icon: <IoMdHome />
         }, */}
-        {/* grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px] */}
+            {/* grid grid-cols-1  w-[19%]  overflow-y-auto scroll-smooth  max-h-[700px] */}
             {toggleSideBar && (
-                <div className="main-container w-[20%] overflow-y-auto h-[700px] transition-all duration-100   xs:hidden ">
-                <div className="all-side-bar-items w-full grid grid-cols-1 md:grid md:w-64 ">
-                    <div onClick={() => navigate('/')} className='item flex py-3 items-center space-x-3 font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100'>
-                        <span><IoMdHome /></span>
-                        <span>Home</span>
-                    </div>
-                    {
+                <div className="main-container w-64 flex-shrink-0 overflow-y-auto h-[calc(100vh-4rem)] transition-all duration-100 xs:hidden border-r border-[#303030] bg-[#0f0f0f]">
+                    <div className="all-side-bar-items w-full flex flex-col p-3">
+                        <div onClick={() => navigate('/')} className='item flex py-2 px-3 items-center space-x-4 hover:bg-[#272727] rounded-lg cursor-pointer transition-all duration-100'>
+                            <span className='text-xl'><IoMdHome /></span>
+                            <span className='text-sm font-normal'>Home</span>
+                        </div>
+                        {
 
-                        items1.map(item => (
-                            <>
-                                <div className="item flex py-3 items-center space-x-3 font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100">
-                                    <span>{item.icon}</span>
-                                    <span>{item.text}</span>
+                            items1.map(item => (
+                                <div key={item.id} className="item flex py-2 px-3 items-center space-x-4 hover:bg-[#272727] rounded-lg cursor-pointer transition-all duration-100">
+                                    <span className='text-xl'>{item.icon}</span>
+                                    <span className='text-sm font-normal'>{item.text}</span>
                                 </div>
-                            </>
-                        ))
-                    }
+                            ))
+                        }
 
-                    <hr />
-                    <br />
+                        <hr className='my-3 border-[#303030]' />
 
-                    <div className="you-container flex items-center space-x-3">
-                        <p className=''>You</p>
-                        <PiGreaterThan className='text-sm mt-1' />
-                    </div>
+                        <div className="you-container flex items-center space-x-2 px-3 mb-2 hover:bg-[#272727] py-2 rounded-lg cursor-pointer">
+                            <p className='font-medium'>You</p>
+                            <PiGreaterThan className='text-xs' />
+                        </div>
 
-                    {
-                        items2.map(item => (
-                            <>
-                                <div className="item flex py-3 items-center space-x-3  font-mono hover:bg-slate-100 hover:text-black hover:rounded-lg transition-all duration-100">
-                                    <span>{item.icon}</span>
-                                    <span>{item.text}</span>
+                        {
+                            items2.map(item => (
+                                <div key={item.id} className="item flex py-2 px-3 items-center space-x-4 hover:bg-[#272727] rounded-lg cursor-pointer transition-all duration-100">
+                                    <span className='text-xl'>{item.icon}</span>
+                                    <span className='text-sm font-normal'>{item.text}</span>
                                 </div>
-                            </>
-                        ))
-                    }
+                            ))
+                        }
 
-                    <hr />
-                    <br />
+                        <hr className='my-3 border-[#303030]' />
 
-                    <div className="third-part">
-                        <b>Explore</b>
-                    </div>
+                        <div className="third-part px-3 mb-2">
+                            <b className='font-medium'>Explore</b>
+                        </div>
 
 
-                    {
-                        items3.map(item => (
-                            <>
-                                <div className="item flex py-3 items-center space-x-3 hover:text-black  font-mono hover:bg-slate-100 hover:rounded-lg transition-all duration-100">
-                                    <span>{item.icon}</span>
-                                    <span>{item.text}</span>
+                        {
+                            items3.map(item => (
+                                <div key={item.id} className="item flex py-2 px-3 items-center space-x-4 hover:bg-[#272727] rounded-lg cursor-pointer transition-all duration-100">
+                                    <span className='text-xl'>{item.icon}</span>
+                                    <span className='text-sm font-normal'>{item.text}</span>
                                 </div>
-                            </>
-                        ))
-                    }
-                    <hr />
-                    <br />
+                            ))
+                        }
+                        <hr className='my-3 border-[#303030]' />
 
-                    <div className="fouth-part">
-                        <b>More from Youtube</b>
-                    </div>
+                        <div className="fouth-part px-3 mb-2">
+                            <b className='font-medium'>More from Youtube</b>
+                        </div>
 
 
 
-                    {
-                        items4.map(item => (
-                            <>
-                                <div className="item flex py-3 items-center space-x-3  font-mono hover:bg-slate-100 hover:rounded-lg transition-all duration-100">
-                                    <span className='text-red-500'>{item.icon}</span>
-                                    <span>{item.text}</span>
+                        {
+                            items4.map(item => (
+                                <div key={item.id} className="item flex py-2 px-3 items-center space-x-4 hover:bg-[#272727] rounded-lg cursor-pointer transition-all duration-100">
+                                    <span className='text-xl text-red-500'>{item.icon}</span>
+                                    <span className='text-sm font-normal'>{item.text}</span>
                                 </div>
-                            </>
-                        ))
-                    }
+                            ))
+                        }
 
-                    <hr />
-                    <br />
+                        <hr className='my-3 border-[#303030]' />
 
-                    {
-                        items5.map(item => (
-                            <>
-                                <div className="item flex py-3 items-center space-x-3  font-mono hover:bg-slate-100 hover:rounded-lg transition-all duration-100">
-                                    <span >{item.icon}</span>
-                                    <span>{item.text}</span>
+                        {
+                            items5.map(item => (
+                                <div key={item.id} className="item flex py-2 px-3 items-center space-x-4 hover:bg-[#272727] rounded-lg cursor-pointer transition-all duration-100">
+                                    <span className='text-xl'>{item.icon}</span>
+                                    <span className='text-sm font-normal'>{item.text}</span>
                                 </div>
-                            </>
-                        ))
-                    }
+                            ))
+                        }
 
 
-                    <hr />
-                    <br />
+                        <hr className='my-3 border-[#303030]' />
 
-                    <div className="text transition-all duration-100">
-                        <p className='font-light text-xs space-x-3 flex justify-between'><span>About</span> <span>Press</span> <span>Copyright</span></p>
+                        <div className="text transition-all duration-100 px-3 pb-4">
+                            <div className='flex flex-wrap gap-2 mb-2'>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>About</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Press</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Copyright</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Contact us</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Creators</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Advertise</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Developers</span>
+                            </div>
+                            <div className='flex flex-wrap gap-2 mb-4'>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Terms</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Privacy</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Policy & Safety</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>How YouTube works</span>
+                                <span className='text-[10px] font-medium text-[#aaa] cursor-pointer'>Test new features</span>
+                            </div>
 
-
-                        <p className='font-light text-xs space-x-3 flex justify-between'><span>Contact us</span> <span>Creators</span> <span>Advertise</span></p>
-
-
-                        <p className='font-light text-xs space-x-3 flex justify-start'><span>Developers</span> </p>
-
-
-                        <p className='font-light mt-2 text-xs space-x-3  flex justify-start'><span>Terms</span> <span>PrivacyPolicy</span> <span>&SafetyHow</span>  </p>
-
-                        {/* <p className='font-light text-xs space-x-3  flex justify-start'><span>& YouTube worksTest </span>  <span>& new features</span></p> */}
-
-                        <p className='font-light mt-2 text-xs space-x-3  flex justify-start' ><span>How YouTube worksTest new features</span></p>
-
-                        <p className='font-light mt-5'>© 2024 Google LLC</p>
+                            <p className='text-[10px] text-[#717171]'>© 2024 Google LLC</p>
+                        </div>
                     </div>
                 </div>
-            </div>
             )}
 
             {!toggleSideBar && (

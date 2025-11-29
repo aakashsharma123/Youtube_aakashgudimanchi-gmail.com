@@ -7,7 +7,10 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "seed": "node seed.js",
+    "seed-dummy": "node seedFromDummy.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

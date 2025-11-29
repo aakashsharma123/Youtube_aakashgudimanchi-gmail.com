@@ -18,14 +18,6 @@ const videoSchema = new mongoose.Schema({
     subscription: { type: String, default: "Free" }
 });
 
-videoSchema.pre("save", function (next) {
-    const video = this;
 
-    if (!video.imageIcon.endsWith(".png") && !video.imageIcon.endsWith(".jpg") && !video.imageIcon.endsWith(".jpeg")) {
-        return next(new Error("Image must be a png, jpg or jpeg file"));
-    } else {
-        next();
-    }
-});
 
 export const videoModel = mongoose.model("video", videoSchema);

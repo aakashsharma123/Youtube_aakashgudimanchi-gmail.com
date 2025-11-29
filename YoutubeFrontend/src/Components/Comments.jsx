@@ -5,7 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import '../Styles/Comment.css'
 
 const Comments = () => {
-    
+
   const { id } = useParams();
   const [Token, setToken] = useState(localStorage.getItem('token'));
   const [comments, setComments] = useState([]);
@@ -13,12 +13,12 @@ const Comments = () => {
   const [editId, setEditId] = useState(null);
   const [editmessage, setEditMessage] = useState('');
   const [handledelupdate, sethandleDelUpdate] = useState(true);
-  const [currentid , setCurrentId] = useState(localStorage.getItem('id'));
+  const [currentid, setCurrentId] = useState(localStorage.getItem('id'));
 
   const handlecomment = async (e) => {
     e.preventDefault();
     try {
-      const url = 'http://localhost:3000/addcomment';
+      const url = 'http://localhost:3001/addcomment';
 
       const response = await fetch(url, {
         method: "POST",
@@ -42,7 +42,7 @@ const Comments = () => {
 
   const handleGetComments = async () => {
     try {
-      const url = `http://localhost:3000/getcomments/${id}`;
+      const url = `http://localhost:3001/getcomments/${id}`;
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -79,7 +79,7 @@ const Comments = () => {
     const deleteCommentId = String(deleteComment._id);
 
     try {
-      const url = `http://localhost:3000/deletecomment/${deleteCommentId}`;
+      const url = `http://localhost:3001/deletecomment/${deleteCommentId}`;
 
       const response = await fetch(url, {
         method: "DELETE",
@@ -147,11 +147,11 @@ const Comments = () => {
               <>
                 <div className='inline-block'>
                   <p className='font-extrabold text-base xs:text-lg'>{comment.messageComment}</p>
-                  {comment.user && ( 
+                  {comment.user && (
                     <p className='text-sm'>Posted By <span className='font-extralight text-sm'>{comment.user.name}</span> </p>
-                  )} 
+                  )}
                 </div>
-                {currentid === comment.user?._id && ( 
+                {currentid === comment.user?._id && (
                   <div className={handledelupdate ? "flex justify-start w-full gap-5 mt-2" : "hidden"}>
                     <MdDelete onClick={() => { handleDeleteButton(comment) }} className='text-2xl xs:text-3xl hover:text-red-500' />
                     <FaEdit onClick={(e) => setEditId(comment._id)} className='text-2xl xs:text-3xl hover:text-green-500' />

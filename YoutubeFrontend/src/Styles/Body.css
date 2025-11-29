@@ -10,13 +10,13 @@
         position: relative;
         bottom: 50px;
         right: 30px;
-        /* transform: scale(1.2); */
+        transform: scale(1.2);
     }
 
     .mainContainer {
         display: grid;
         grid-template-columns: repeat(1 , minmax (1fr , 1fr));
-        /* grid-template-rows: auto; */
+        grid-template-rows: auto;
         justify-content: center;
         margin-top: 1rem;
       
@@ -51,7 +51,7 @@
         position: relative;
         bottom: 50px;
         right: 30px;
-        /* transform: scale(1.2); */
+        transform: scale(1.2);
     }
 
     .mainContainer {

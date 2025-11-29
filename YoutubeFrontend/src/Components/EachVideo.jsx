@@ -18,7 +18,7 @@ const EachVideo = () => {
     // Function to fetch video data
     const eachVideoFetch = async () => {
         try {
-            const url = 'http://localhost:3000/';
+            const url = 'http://localhost:3001/';
             const response = await fetch(url, {
                 method: "GET",
                 headers: {
@@ -45,7 +45,7 @@ const EachVideo = () => {
     useEffect(() => {
         const filterDetails = youtubeData.filter(each => each._id === id);
         setFilteredData(filterDetails[0]);
-        
+
     }, [youtubeData, id]);
 
     if (!filteredData) {
@@ -54,13 +54,20 @@ const EachVideo = () => {
 
     return (
         <>
-            <main className='m-4 max-w-full'>
+            <main className='flex-1 p-4 overflow-y-auto'>
                 <section className='ml-4 mt-4'>
-                    <iframe
-                        className='rounded-xl w-full aspect-video'
-                        src={filteredData.video_url}
-                        allowFullScreen
-                    />
+                    {filteredData.video_url && filteredData.video_url.trim() ? (
+                        <iframe
+                            className='rounded-xl w-full aspect-video'
+                            src={filteredData.video_url}
+                            allowFullScreen
+                            title="Video Player"
+                        />
+                    ) : (
+                        <div className='rounded-xl w-full aspect-video bg-[#272727] flex items-center justify-center'>
+                            <p className='text-gray-400'>Video URL not available</p>
+                        </div>
+                    )}
                 </section>
                 <p className='px-5 text-base xs:text-lg w-full'>{filteredData.description}</p>
 
@@ -103,7 +110,7 @@ const EachVideo = () => {
                         </p>
                     </article>
                     {Token ? (
-                        <article className="secound-container bg-[#292929] border-none rounded-lg m-2 p-5 w-full xs:w-[310px] xs:ml-5">  
+                        <article className="secound-container bg-[#292929] border-none rounded-lg m-2 p-5 w-full xs:w-[310px] xs:ml-5">
                             <div className='comments w-full xs:w-full '>
                                 <Comments />
                             </div>
