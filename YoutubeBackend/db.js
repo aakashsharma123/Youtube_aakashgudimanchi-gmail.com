@@ -9,8 +9,7 @@ mongoose.connect(MONGO_URI)
 const db = mongoose.connection;
 
 db.on ("connected" , () => {
-    console.log("mongoose is connected");
-    
+    console.log("mongoose is connected");  
 })
 db.on ("disconnected" , () => {
     console.log('mongoose is not connected');
