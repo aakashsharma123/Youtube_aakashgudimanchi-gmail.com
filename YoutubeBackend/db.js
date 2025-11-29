@@ -12,9 +12,7 @@ db.on ("connected" , () => {
     console.log("mongoose is connected");
     
 })
-
 db.on ("disconnected" , () => {
     console.log('mongoose is not connected');
 })
-
 export default db
